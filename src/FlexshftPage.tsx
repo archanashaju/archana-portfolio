@@ -138,8 +138,8 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
 
           <p className="cs-hero-lead">
             An intelligent mobile marketplace connecting verified hourly talent with hospitality,
-            healthcare, and retail venues in real time. Replacing 48-hour agency delays with 15-minute
-            algorithmic dispatching and instant payroll.
+            healthcare, and retail venues in real time. Replacing 48-hour agency delays with
+            15-minute algorithmic dispatching and instant payroll.
           </p>
 
           {/* Hero Device Mockup in Chrome Torus */}
@@ -199,14 +199,16 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
             </div>
             <div className="cs-editorial-columns">
               <p className="cs-lead-paragraph">
-                The traditional temporary staffing model is broken. Hospitality venues and clinics lose
-                over £1.4B annually to sudden worker vacancies, while agencies charge 40% commissions,
-                rely on manual telephone trees, and force hourly workers to wait up to 21 days for pay.
+                The traditional temporary staffing model is broken. Hospitality venues and clinics
+                lose over £1.4B annually to sudden worker vacancies, while agencies charge 40%
+                commissions, rely on manual telephone trees, and force hourly workers to wait up to
+                21 days for pay.
               </p>
               <p>
-                FLEXSHFT was conceived as an end-to-end liquidity engine for shifts. By pairing verified
-                talent credentials with proximity-based matching, managers fill shifts in under 15 minutes,
-                while workers enjoy the freedom of flexible hours and same-day direct bank settlement.
+                FLEXSHFT was conceived as an end-to-end liquidity engine for shifts. By pairing
+                verified talent credentials with proximity-based matching, managers fill shifts in
+                under 15 minutes, while workers enjoy the freedom of flexible hours and same-day
+                direct bank settlement.
               </p>
             </div>
           </section>
@@ -217,7 +219,10 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <span className="section-num">02 / THE ECOSYSTEM</span>
               <div>
                 <h2>Engineered for High-Turnover Industries</h2>
-                <p>Four specialized workforce verticals unified into one seamless matching architecture.</p>
+                <p>
+                  Four specialized workforce verticals unified into one seamless matching
+                  architecture.
+                </p>
               </div>
             </div>
 
@@ -254,7 +259,9 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <span className="section-num">03 / USER JOURNEY & FLOW</span>
               <div>
                 <h2>The 5-Step Frictionless Dispatch Loop</h2>
-                <p>From sudden venue vacancy to same-day bank deposit with zero manual phone calls.</p>
+                <p>
+                  From sudden venue vacancy to same-day bank deposit with zero manual phone calls.
+                </p>
               </div>
             </div>
 
@@ -321,17 +328,24 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <div className="legend-item">
                 <span className="legend-idx">02</span>
                 <h4>Live Shift Ticket</h4>
-                <p>Real-time briefing, dress code specification (black vest/tie), and staff door pin.</p>
+                <p>
+                  Real-time briefing, dress code specification (black vest/tie), and staff door pin.
+                </p>
               </div>
               <div className="legend-item">
                 <span className="legend-idx">03</span>
                 <h4>Flexes Portfolio</h4>
-                <p>Visual proof of work: mixology photos, kitchen action shots, and verified skill badges.</p>
+                <p>
+                  Visual proof of work: mixology photos, kitchen action shots, and verified skill
+                  badges.
+                </p>
               </div>
               <div className="legend-item">
                 <span className="legend-idx">04</span>
                 <h4>Manage Availability</h4>
-                <p>Interactive weekly matrix (Morning/Afternoon/Evening) and one-tap Holiday Mode.</p>
+                <p>
+                  Interactive weekly matrix (Morning/Afternoon/Evening) and one-tap Holiday Mode.
+                </p>
               </div>
             </div>
           </section>
@@ -372,8 +386,8 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
                     <span className="bullet-pill">GEOFENCE SYNC</span>
                     <h4>Automated Clock-In Beacon</h4>
                     <p>
-                      Bluetooth BLE beacons detect arrival at the venue entrance, updating the ticket
-                      status to "Active on Floor" automatically.
+                      Bluetooth BLE beacons detect arrival at the venue entrance, updating the
+                      ticket status to "Active on Floor" automatically.
                     </p>
                   </div>
                 </div>
@@ -388,8 +402,9 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <div>
                 <h2>Brand Identity & Symbol Geometry</h2>
                 <p>
-                  The "FS" mark marries geometric precision with the swift energy of hourly momentum.
-                  Tested across iOS squircles, physical collateral, and high-contrast digital displays.
+                  The "FS" mark marries geometric precision with the swift energy of hourly
+                  momentum. Tested across iOS squircles, physical collateral, and high-contrast
+                  digital displays.
                 </p>
               </div>
             </div>
@@ -422,8 +437,8 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
           {/* 07 / Philosophy Quote Banner (Dark with ambient glow) */}
           <section className="cs-quote-banner page-container">
             <blockquote>
-              “Shift work shouldn't mean uncertain income. We designed FLEXSHFT to bring dignity, velocity,
-              and absolute transparency to every single working hour.”
+              “Shift work shouldn't mean uncertain income. We designed FLEXSHFT to bring dignity,
+              velocity, and absolute transparency to every single working hour.”
             </blockquote>
             <cite>— Product Vision Statement · FLEXSHFT UK 2025</cite>
           </section>
@@ -435,8 +450,9 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <div>
                 <h2>Verified Credentials & Instant Claiming</h2>
                 <p>
-                  On the left, Sophie Turner's verified profile with video intro, 92% show-up rate, and work samples.
-                  On the right, the algorithmic Best Matches feed with guaranteed pay breakdown.
+                  On the left, Sophie Turner's verified profile with video intro, 92% show-up rate,
+                  and work samples. On the right, the algorithmic Best Matches feed with guaranteed
+                  pay breakdown.
                 </p>
               </div>
             </div>
@@ -460,8 +476,8 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <div className="cs-note-box">
                 <h4>Transparent Shift Economics</h4>
                 <p>
-                  Every card displays total net payout upfront (£72.00, £95.00), hourly rate breakdown,
-                  and exact walking distance from the worker's current location.
+                  Every card displays total net payout upfront (£72.00, £95.00), hourly rate
+                  breakdown, and exact walking distance from the worker's current location.
                 </p>
               </div>
             </div>
@@ -473,7 +489,9 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <span className="section-num">09 / INTERACTIVE SIMULATOR</span>
               <div>
                 <h2>Experience the Shift Dispatch Engine</h2>
-                <p>Filter active shifts by proximity or suitability, and test the 1-tap claim flow.</p>
+                <p>
+                  Filter active shifts by proximity or suitability, and test the 1-tap claim flow.
+                </p>
               </div>
             </div>
 
@@ -588,8 +606,8 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
                 <div className="cs-note-box">
                   <h4>Two-Way Trust Rating</h4>
                   <p>
-                    Venues and workers rate each other on punctuality, kitchen safety, and environment,
-                    fostering respectful, reliable workplace culture.
+                    Venues and workers rate each other on punctuality, kitchen safety, and
+                    environment, fostering respectful, reliable workplace culture.
                   </p>
                 </div>
               </div>
@@ -602,7 +620,9 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <span className="section-num">10 / EMPLOYER CONSOLE</span>
               <div>
                 <h2>Venue Operations & Floor Radar</h2>
-                <p>Designed for managers on tablets and desktop consoles to orchestrate live rosters.</p>
+                <p>
+                  Designed for managers on tablets and desktop consoles to orchestrate live rosters.
+                </p>
               </div>
             </div>
 
@@ -689,7 +709,10 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <span className="section-num">11 / MEASURABLE IMPACT</span>
               <div>
                 <h2>Quantified Performance Metrics</h2>
-                <p>Performance results measured across 6 months of live operational deployment in Manchester and London.</p>
+                <p>
+                  Performance results measured across 6 months of live operational deployment in
+                  Manchester and London.
+                </p>
               </div>
             </div>
 
@@ -697,22 +720,30 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
               <div className="cs-metric-card">
                 <span className="metric-num">14.2m</span>
                 <span className="metric-label">Average Shift Fill Time</span>
-                <p className="metric-desc">Down from an industry average of 36 hours via staffing agencies.</p>
+                <p className="metric-desc">
+                  Down from an industry average of 36 hours via staffing agencies.
+                </p>
               </div>
               <div className="cs-metric-card">
                 <span className="metric-num">98.6%</span>
                 <span className="metric-label">Attendance & On-Time Rate</span>
-                <p className="metric-desc">Enforced via proactive geofence alerts and two-way rating incentives.</p>
+                <p className="metric-desc">
+                  Enforced via proactive geofence alerts and two-way rating incentives.
+                </p>
               </div>
               <div className="cs-metric-card">
                 <span className="metric-num">£4.8M+</span>
                 <span className="metric-label">Wages Disbursed</span>
-                <p className="metric-desc">Transferred with zero hidden fees directly to hourly workers.</p>
+                <p className="metric-desc">
+                  Transferred with zero hidden fees directly to hourly workers.
+                </p>
               </div>
               <div className="cs-metric-card">
                 <span className="metric-num">4.9 ★</span>
                 <span className="metric-label">Worker Satisfaction Rating</span>
-                <p className="metric-desc">App Store and Google Play aggregated rating over 8,400+ reviews.</p>
+                <p className="metric-desc">
+                  App Store and Google Play aggregated rating over 8,400+ reviews.
+                </p>
               </div>
             </div>
           </section>
@@ -724,7 +755,9 @@ export function FlexshftPage({ onBack, onNavigate }: FlexshftPageProps) {
         <button className="cs-footer-back" onClick={onBack}>
           ← Return to All Projects
         </button>
-        <p className="cs-footer-copy">© 2025 Carter Ogunsola · Balky Studio · Flexshft Case Study</p>
+        <p className="cs-footer-copy">
+          © 2025 Carter Ogunsola · Balky Studio · Flexshft Case Study
+        </p>
       </footer>
     </main>
   );

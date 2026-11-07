@@ -1,50 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AboutPage, ContactPage, WorksPage } from "./pages";
 import { FlexshftPage } from "./FlexshftPage";
-
-type Project = {
-  name: string;
-  collab: string;
-  year: string;
-  slug: string;
-  href: string;
-  monogram: string;
-};
-
-const projects: Project[] = [
-  {
-    name: "Tiny Bits",
-    collab: "w/tiny bits",
-    year: "2025",
-    slug: "tiny-bits",
-    href: "https://tinybitsoflove.com/",
-    monogram: "TB",
-  },
-  {
-    name: "HOTCOIN",
-    collab: "w/sabeer bhatia",
-    year: "2025",
-    slug: "hotcoin",
-    href: "https://hotcoin.com/",
-    monogram: "HC",
-  },
-  {
-    name: "FLEXSHFT",
-    collab: "w/j.berry",
-    year: "2025",
-    slug: "flexshft",
-    href: "/flexshft",
-    monogram: "FS",
-  },
-  {
-    name: "FTG Connect",
-    collab: "w/balky studio",
-    year: "2026",
-    slug: "ftg-connect",
-    href: "https://ftgconnect.com/",
-    monogram: "FT",
-  },
-];
+import { projects, type Project } from "./projects";
 
 const nav = ["About", "Works", "Contact"];
 type Route = "home" | "about" | "works" | "lab" | "contact" | "flexshft";
@@ -240,13 +197,7 @@ function LiveCursors() {
               top: `calc(${c.baseY}vh + ${off.y}px)`,
             }}
           >
-            <svg
-              className="peer-arrow"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill={c.color}
-            >
+            <svg className="peer-arrow" width="14" height="14" viewBox="0 0 24 24" fill={c.color}>
               <path
                 d="M3 2 L19 12 L11.5 13.8 L8.2 21 L3 2 Z"
                 stroke="#111"
@@ -391,10 +342,8 @@ export default function App() {
   const [motionVelocity, setMotionVelocity] = useState(0);
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [onlineCount, setOnlineCount] = useState(38);
   const [modal, setModal] = useState<"search" | "news" | "menu" | null>(null);
-  const [time, setTime] = useState("02:50");
-  const [fps, setFps] = useState(60);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const positionRef = useRef(0);
   const prevPosRef = useRef(0);
@@ -462,46 +411,6 @@ export default function App() {
   }, [activeIndex, soundEnabled]);
 
   useEffect(() => {
-    const updateTime = () =>
-      setTime(
-        new Intl.DateTimeFormat("en-US", {
-          timeZone: "America/Denver",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).format(new Date()),
-      );
-    updateTime();
-    const timer = window.setInterval(updateTime, 10000);
-
-    const onlineTimer = window.setInterval(() => {
-      setOnlineCount((prev) => {
-        const delta = Math.floor(Math.random() * 3) - 1;
-        return Math.max(34, Math.min(42, prev + delta));
-      });
-    }, 7000);
-
-    let frames = 0;
-    let last = performance.now();
-    let frameId = 0;
-    const tick = (now: number) => {
-      frames++;
-      if (now - last > 700) {
-        setFps(Math.round((frames * 1000) / (now - last)));
-        frames = 0;
-        last = now;
-      }
-      frameId = requestAnimationFrame(tick);
-    };
-    frameId = requestAnimationFrame(tick);
-    return () => {
-      clearInterval(timer);
-      clearInterval(onlineTimer);
-      cancelAnimationFrame(frameId);
-    };
-  }, []);
-
-  useEffect(() => {
     let frame = 0;
     let previous = performance.now();
 
@@ -520,8 +429,7 @@ export default function App() {
       }
 
       const timeSinceInput = now - lastInputRef.current;
-      const isIdle =
-        !drag.current && Math.abs(residualYRef.current) < 0.04 && timeSinceInput > 75;
+      const isIdle = !drag.current && Math.abs(residualYRef.current) < 0.04 && timeSinceInput > 75;
 
       if (isIdle) {
         // Carter's critically damped landing spring (C.land = 0.24, C.momentum = 0.6)
@@ -577,7 +485,9 @@ export default function App() {
   }, [modal]);
 
   const onWheel = (event: React.WheelEvent) => {
-    event.preventDefault();
+    if (event.cancelable) {
+      event.preventDefault();
+    }
     const raw =
       event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1);
     if (Math.abs(raw) < 0.1) return;
@@ -657,7 +567,12 @@ export default function App() {
 
   return (
     <div className={`site-shell ${route === "home" ? "is-home" : "is-page"}`}>
-      <svg width="0" height="0" style={{ position: "absolute", pointerEvents: "none" }} aria-hidden="true">
+      <svg
+        width="0"
+        height="0"
+        style={{ position: "absolute", pointerEvents: "none" }}
+        aria-hidden="true"
+      >
         <defs>
           <clipPath id="curved-screen" clipPathUnits="objectBoundingBox">
             <path d="M 0.02,0.06 Q 0.5,-0.015 0.98,0.06 Q 1,0.065 1,0.09 L 1,0.91 Q 1,0.935 0.98,0.94 Q 0.5,1.015 0.02,0.94 Q 0,0.935 0,0.91 L 0,0.09 Q 0,0.065 0.02,0.06 Z" />
@@ -666,33 +581,6 @@ export default function App() {
       </svg>
       <CustomCursor />
       <header className="header">
-        <div className="hud" aria-hidden="true">
-          <span>
-            <b>UT::</b>
-            {time}NST
-          </span>
-          <span>
-            <b>FPS::</b>
-            {fps}
-          </span>
-          <span>
-            <b>ONLINE::</b>
-            {onlineCount}
-          </span>
-          <span>
-            <b>LCP::</b>1.7s
-          </span>
-          <button
-            className="hud-sound-toggle"
-            onClick={() => setSoundEnabled(!soundEnabled)}
-            aria-label="Toggle Sound"
-          >
-            <b>SOUND::</b>{soundEnabled ? "ON" : "OFF"}
-          </button>
-          <span>
-            <b>Booking::</b>Q1’27
-          </span>
-        </div>
         <div className="header-bar">
           <a
             className="brand"
@@ -707,7 +595,12 @@ export default function App() {
             <span className="brand-pill brand-o">o</span>
             {route !== "home" && (
               <span className="brand-crumb">
-                :: {route === "works" || route === "lab" ? "Works" : route === "flexshft" ? "FLEXSHFT" : route}
+                ::{" "}
+                {route === "works" || route === "lab"
+                  ? "Works"
+                  : route === "flexshft"
+                    ? "FLEXSHFT"
+                    : route}
               </span>
             )}
           </a>
@@ -719,7 +612,12 @@ export default function App() {
                   href={`/${item.toLowerCase()}`}
                   onClick={(event) => {
                     const next = item.toLowerCase();
-                    if (next === "about" || next === "works" || next === "lab" || next === "contact") {
+                    if (
+                      next === "about" ||
+                      next === "works" ||
+                      next === "lab" ||
+                      next === "contact"
+                    ) {
                       event.preventDefault();
                       navigate(next as Route);
                     }
@@ -888,7 +786,7 @@ export default function App() {
               const posX = 72 + (1 - cosA) * 72;
               const posY = 50 - sinA * 56;
               const rotZ = distance * 24 - lean;
-              const scale = Math.max(0.65, 1.02 - absDist * 0.30);
+              const scale = Math.max(0.65, 1.02 - absDist * 0.3);
               const opacity = Math.max(0, 1 - absDist * 0.45);
               const isActive = index === activeIndex;
               const zIndex = isActive ? 50 : Math.max(1, Math.round(20 - absDist * 8));
@@ -923,7 +821,9 @@ export default function App() {
         </main>
       )}
       {route === "about" && <AboutPage />}
-      {(route === "works" || route === "lab") && <WorksPage />}
+      {(route === "works" || route === "lab") && (
+        <WorksPage onNavigate={(r) => navigate(r as Route)} />
+      )}
       {route === "contact" && <ContactPage />}
       {route === "flexshft" && (
         <FlexshftPage onBack={() => navigate("home")} onNavigate={(r) => navigate(r as Route)} />
@@ -939,49 +839,115 @@ export default function App() {
             <button className="modal-close" aria-label="Close" onClick={() => setModal(null)}>
               ×
             </button>
-            {modal === "search" && (
-              <>
-                <div className="search-line">
-                  <Icon name="search" />
-                  <input autoFocus placeholder="Search pages and projects..." />
-                </div>
-                <p className="modal-label">Pages</p>
-                {nav.map((item) => (
-                  <a
-                    className="result"
-                    href={`/${item.toLowerCase()}`}
-                    key={item}
-                    onClick={(event) => {
-                      const next = item.toLowerCase();
-                      if (next === "about" || next === "works" || next === "lab" || next === "contact") {
+            {modal === "search" && (() => {
+              const query = searchQuery.trim().toLowerCase();
+              const filteredPages = nav.filter(
+                (item) => !query || item.toLowerCase().includes(query),
+              );
+              const filteredProjects = projects.filter(
+                (item) =>
+                  !query ||
+                  item.name.toLowerCase().includes(query) ||
+                  item.collab.toLowerCase().includes(query),
+              );
+              const showFlexshftCaseStudy = !query || "flexshft case study".includes(query);
+
+              return (
+                <>
+                  <div className="search-line">
+                    <Icon name="search" />
+                    <input
+                      autoFocus
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search pages and projects..."
+                    />
+                  </div>
+                  {filteredPages.length > 0 && (
+                    <>
+                      <p className="modal-label">Pages</p>
+                      {filteredPages.map((item) => (
+                        <a
+                          className="result"
+                          href={`/${item.toLowerCase()}`}
+                          key={item}
+                          onClick={(event) => {
+                            const next = item.toLowerCase();
+                            if (
+                              next === "about" ||
+                              next === "works" ||
+                              next === "lab" ||
+                              next === "contact"
+                            ) {
+                              event.preventDefault();
+                              navigate(next === "lab" ? "works" : (next as Route));
+                              setSearchQuery("");
+                            } else setModal(null);
+                          }}
+                        >
+                          <span>{item}</span>
+                          <small>/{item.toLowerCase()}</small>
+                        </a>
+                      ))}
+                    </>
+                  )}
+                  {showFlexshftCaseStudy && (
+                    <a
+                      className="result"
+                      href="/flexshft"
+                      onClick={(event) => {
                         event.preventDefault();
-                        navigate(next === "lab" ? "works" : (next as Route));
-                      } else setModal(null);
-                    }}
-                  >
-                    <span>{item}</span>
-                    <small>/{item.toLowerCase()}</small>
-                  </a>
-                ))}
-                <a
-                  className="result"
-                  href="/flexshft"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    navigate("flexshft");
-                    setModal(null);
-                  }}
-                >
-                  <span>FLEXSHFT</span>
-                  <small>/case-study</small>
-                </a>
-              </>
-            )}
+                        navigate("flexshft");
+                        setModal(null);
+                        setSearchQuery("");
+                      }}
+                    >
+                      <span>FLEXSHFT</span>
+                      <small>/case-study</small>
+                    </a>
+                  )}
+                  {filteredProjects.length > 0 && (
+                    <>
+                      <p className="modal-label">Projects</p>
+                      {filteredProjects.map((item) => (
+                        <a
+                          className="result"
+                          href={item.href}
+                          key={item.slug}
+                          target={item.slug === "flexshft" ? undefined : "_blank"}
+                          rel={item.slug === "flexshft" ? undefined : "noreferrer"}
+                          onClick={(event) => {
+                            if (item.slug === "flexshft") {
+                              event.preventDefault();
+                              navigate("flexshft");
+                            }
+                            setModal(null);
+                            setSearchQuery("");
+                          }}
+                        >
+                          <span>{item.name}</span>
+                          <small>{item.collab.toUpperCase()}</small>
+                        </a>
+                      ))}
+                    </>
+                  )}
+                  {filteredPages.length === 0 &&
+                    filteredProjects.length === 0 &&
+                    !showFlexshftCaseStudy && (
+                      <p className="modal-label" style={{ padding: "18px 0", textAlign: "center" }}>
+                        No results found for "{searchQuery}"
+                      </p>
+                    )}
+                </>
+              );
+            })()}
             {modal === "news" && (
               <>
                 <p className="modal-label">What's new</p>
                 <h2>FLEXSHFT</h2>
-                <p className="news-copy">Inner case study: high-velocity shift staffing ecosystem.</p>
+                <p className="news-copy">
+                  Inner case study: high-velocity shift staffing ecosystem.
+                </p>
                 <div className="news-meta">
                   <span>Case Study</span>
                   <span>New</span>
@@ -1010,7 +976,12 @@ export default function App() {
                     key={item}
                     onClick={(event) => {
                       const next = item.toLowerCase();
-                      if (next === "about" || next === "works" || next === "lab" || next === "contact") {
+                      if (
+                        next === "about" ||
+                        next === "works" ||
+                        next === "lab" ||
+                        next === "contact"
+                      ) {
                         event.preventDefault();
                         navigate(next === "lab" ? "works" : (next as Route));
                       } else setModal(null);

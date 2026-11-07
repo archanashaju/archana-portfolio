@@ -1,16 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
-const experiments = [
-  { name: "Live Cursors", type: "Interaction", slug: "live-cursors", isNew: true },
-  { name: "Dial", type: "Interaction", slug: "dial", isNew: true },
-  { name: "Polka Dots", type: "Canvas", slug: "polka-dots" },
-  { name: "Heart", type: "Canvas", slug: "heart", isNew: true },
-  { name: "ThreeJs Scene", type: "3D", slug: "threejs-scene" },
-  { name: "Dynamic Scrollbar", type: "UI", slug: "dynamic-scrollbar" },
-  { name: "Rotating Gallery", type: "Gallery", slug: "rotating-gallery" },
-  { name: "Paste-Up", type: "Transition", slug: "paste-up", isNew: true },
-  { name: "Vocal Orb", type: "3D", slug: "vocal-orb", isNew: true },
-];
+import { projects } from "./projects";
 
 const work = [
   ["Odyn", "Founder", "Present"],
@@ -185,29 +174,39 @@ export function AboutPage() {
   );
 }
 
-export function WorksPage() {
+export function WorksPage({ onNavigate }: { onNavigate?: (route: string) => void } = {}) {
   const [mode, setMode] = useState<"grid" | "list" | "wheel">("grid");
   return (
     <main className="page-scroll lab-page">
       <div className="lab-intro page-container">
-        <p className="section-label">WORKS:: MOTION EXPERIMENTS</p>
-        <h1>Things made to move.</h1>
-        <p>
-          Small interaction studies, canvas sketches and three-dimensional tests from the workbench.
-        </p>
+        <p className="section-label">WORKS :: SELECTED PROJECTS</p>
+        <h1>Selected Works.</h1>
+        <p>Featured client commissions, digital products, brand engineering, and web ecosystems.</p>
       </div>
-      <section className={`lab-catalogue lab-${mode}`} aria-label="Works & experiments">
-        {experiments.map((item, index) => (
-          <a className="experiment" href={`#${item.slug}`} key={item.slug}>
+      <section className={`lab-catalogue lab-${mode}`} aria-label="Works & projects">
+        {projects.map((item, index) => (
+          <a
+            className="experiment"
+            href={item.href}
+            key={item.slug}
+            target={item.slug === "flexshft" ? undefined : "_blank"}
+            rel={item.slug === "flexshft" ? undefined : "noreferrer"}
+            onClick={(event) => {
+              if (item.slug === "flexshft" && onNavigate) {
+                event.preventDefault();
+                onNavigate("flexshft");
+              }
+            }}
+          >
             <div className="experiment-image">
-              <img src={`/lab/${item.slug}.jpg`} alt="" />
+              <img src={`/projects/${item.slug}.jpg`} alt={item.name} />
               <span>{String(index + 1).padStart(2, "0")}</span>
             </div>
             <div className="experiment-meta">
               <h2>{item.name}</h2>
               <div>
-                <span>{item.type}</span>
-                {item.isNew && <b>New</b>}
+                <span>{item.collab.toUpperCase()}</span>
+                <b>{item.year}</b>
               </div>
             </div>
           </a>

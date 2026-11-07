@@ -176,39 +176,6 @@
   z-index: 20;
   pointer-events: none;
 }
-.hud {
-  height: 32px;
-  padding: 0 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 22px;
-  color: rgba(255, 255, 255, 0.45);
-  font:
-    400 9.5px/1 "PP Neue Montreal Mono",
-    monospace;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
-}
-.hud span,
-.hud button {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.hud b {
-  color: #ffffff;
-  font-weight: 500;
-}
-.hud-sound-toggle {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
 .header-bar {
   height: 64px;
   padding: 12px 20px;
@@ -239,7 +206,9 @@
   font-weight: 500;
   text-transform: lowercase;
   backdrop-filter: blur(8px);
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 .brand-c {
   width: 32px;
@@ -307,7 +276,9 @@
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
 }
 .command-button:hover {
   background: rgba(255, 255, 255, 0.12);
@@ -402,7 +373,9 @@
   margin-top: 10px;
   padding: 2.5px 7px;
   border-radius: 4px;
-  font: 500 9px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 9px/1 "PP Neue Montreal Mono",
+    monospace;
   letter-spacing: 0.02em;
   white-space: nowrap;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35);
@@ -465,12 +438,8 @@
   width: clamp(280px, 28vw, 440px);
   aspect-ratio: 16 / 10;
   transform-origin: center center;
-  transform: translate(-50%, -50%)
-    translate3d(var(--hover-x), var(--hover-y), 0)
-    rotateZ(var(--rot-z))
-    rotateX(var(--tilt-x))
-    rotateY(var(--tilt-y))
-    scale(var(--scale));
+  transform: translate(-50%, -50%) translate3d(var(--hover-x), var(--hover-y), 0)
+    rotateZ(var(--rot-z)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(var(--scale));
   opacity: var(--opacity);
   filter: brightness(calc(0.6 + var(--focus) * 0.4));
   border-radius: 8px;
@@ -514,7 +483,12 @@
   inset: 0;
   opacity: 0.15;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
   transition: opacity 0.35s ease;
 }
 .proof-card.is-hovered::before {
@@ -528,12 +502,8 @@
   width: clamp(120px, 10.5vw, 175px);
   aspect-ratio: 1;
   transform-origin: center center;
-  transform: translate(-50%, -50%)
-    translate3d(var(--hover-x), var(--hover-y), 0)
-    rotateZ(var(--rot-z))
-    rotateX(var(--tilt-x))
-    rotateY(var(--tilt-y))
-    scale(var(--scale));
+  transform: translate(-50%, -50%) translate3d(var(--hover-x), var(--hover-y), 0)
+    rotateZ(var(--rot-z)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(var(--scale));
   opacity: var(--opacity);
   filter: brightness(calc(0.65 + var(--focus) * 0.35));
   will-change: transform, left, top, opacity;
@@ -563,7 +533,9 @@
     0 22px 50px rgba(0, 0, 0, 0.7),
     inset 1px 1px 1.5px rgba(255, 255, 255, 0.32),
     inset -1px -1px 2px rgba(0, 0, 0, 0.85);
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
   overflow: hidden;
 }
 .die-card.is-hovered .die-face {
@@ -603,7 +575,9 @@
   font-family: "Oracle", sans-serif;
 }
 .emblem-1820-sub {
-  font: 600 7px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 7px/1 "PP Neue Montreal Mono",
+    monospace;
   letter-spacing: 0.22em;
   color: rgba(255, 255, 255, 0.6);
 }
@@ -709,7 +683,9 @@
   animation: center-in 0.4s cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 .project-number {
-  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 11px/1 "PP Neue Montreal Mono",
+    monospace;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.45);
   margin: 0 0 16px;
@@ -731,7 +707,9 @@
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  font: 400 9.5px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 9.5px/1 "PP Neue Montreal Mono",
+    monospace;
   color: rgba(255, 255, 255, 0.75);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -825,7 +803,7 @@
 .office {
   position: relative;
   min-height: 100svh;
-  padding-top: 112px;
+  padding-top: 80px;
   overflow: hidden;
   background:
     radial-gradient(circle at 48% 45%, rgba(255, 255, 255, 0.35), transparent 32%),
@@ -1093,7 +1071,7 @@
 
 /* Lab */
 .lab-page {
-  padding-top: 108px;
+  padding-top: 76px;
   background: var(--surface);
 }
 .lab-intro {
@@ -1264,14 +1242,14 @@
 
 /* Contact */
 .contact-page {
-  padding-top: 110px;
+  padding-top: 78px;
   background:
     radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.35), transparent 28%), #c9c6be;
   color: #1e1e1e;
 }
 .letter-desk {
   width: min(1050px, calc(100% - 36px));
-  min-height: calc(100svh - 110px);
+  min-height: calc(100svh - 78px);
   margin: 0 auto;
   padding: 45px 0 90px;
   display: flex;
@@ -1606,15 +1584,6 @@
 }
 
 @media (max-width: 760px) {
-  .hud {
-    height: 24px;
-    justify-content: space-between;
-    padding: 0 9px;
-    gap: 0;
-  }
-  .hud-optional {
-    display: none !important;
-  }
   .header-bar {
     height: 61px;
     padding: 10px 10px;
@@ -1710,7 +1679,7 @@
   }
   .office {
     min-height: 920px;
-    padding-top: 95px;
+    padding-top: 71px;
   }
   .office-caption {
     width: calc(100% - 28px);
@@ -1765,7 +1734,7 @@
     font-size: 11px;
   }
   .lab-page {
-    padding-top: 85px;
+    padding-top: 65px;
   }
   .lab-intro {
     padding: 55px 0 65px;
@@ -1797,7 +1766,7 @@
     width: 72vw;
   }
   .contact-page {
-    padding-top: 85px;
+    padding-top: 65px;
   }
   .letter-desk {
     width: calc(100% - 18px);
@@ -1836,7 +1805,7 @@
    ========================================================================= */
 
 .flexshft-page {
-  padding-top: 104px;
+  padding-top: 72px;
   padding-bottom: 120px;
   background: var(--surface);
   color: var(--ink);
@@ -1863,7 +1832,9 @@
   border: 1px solid var(--line);
   background: var(--fill);
   color: var(--ink);
-  font: 500 12px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 12px/1 "PP Neue Montreal Mono",
+    monospace;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -1881,7 +1852,9 @@
 }
 
 .cs-meta-pill {
-  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 10px/1 "PP Neue Montreal Mono",
+    monospace;
   padding: 5px 11px;
   border-radius: 6px;
   border: 1px solid var(--line);
@@ -1942,7 +1915,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 11px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   letter-spacing: 0.1em;
   margin-bottom: 20px;
@@ -2044,7 +2019,9 @@
 }
 
 .spec-label {
-  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 10px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   letter-spacing: 0.1em;
 }
@@ -2121,7 +2098,9 @@
 }
 
 .sector-badge {
-  font: 600 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 10px/1 "PP Neue Montreal Mono",
+    monospace;
   padding: 4px 8px;
   border-radius: 4px;
   letter-spacing: 0.05em;
@@ -2157,7 +2136,9 @@
 
 .sector-rate-tag {
   color: #10b981;
-  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 10px/1 "PP Neue Montreal Mono",
+    monospace;
 }
 
 /* User Flow Journey Diagram */
@@ -2186,7 +2167,9 @@
 }
 
 .journey-num {
-  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 10px/1 "PP Neue Montreal Mono",
+    monospace;
   color: #10b981;
   display: block;
   margin-bottom: 8px;
@@ -2254,9 +2237,15 @@
   display: inline-block;
 }
 
-.dashboard-dots span:nth-child(1) { background: #ef4444; }
-.dashboard-dots span:nth-child(2) { background: #f59e0b; }
-.dashboard-dots span:nth-child(3) { background: #10b981; }
+.dashboard-dots span:nth-child(1) {
+  background: #ef4444;
+}
+.dashboard-dots span:nth-child(2) {
+  background: #f59e0b;
+}
+.dashboard-dots span:nth-child(3) {
+  background: #10b981;
+}
 
 .dashboard-status {
   color: #10b981;
@@ -2283,7 +2272,9 @@
 
 .d-stat-label {
   display: block;
-  font: 400 9px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 9px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   margin-bottom: 6px;
   letter-spacing: 0.05em;
@@ -2308,7 +2299,9 @@
   grid-template-columns: 1.5fr 1.5fr 1.2fr 1.5fr 1fr 1fr;
   padding: 12px 18px;
   background: rgba(255, 255, 255, 0.04);
-  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 10px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   border-bottom: 1px solid var(--line);
   min-width: 680px;
@@ -2337,7 +2330,9 @@
 .status-badge {
   padding: 3px 8px;
   border-radius: 4px;
-  font: 600 9px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 9px/1 "PP Neue Montreal Mono",
+    monospace;
   display: inline-block;
   width: fit-content;
 }
@@ -2424,7 +2419,9 @@
 }
 
 .section-num {
-  font: 400 13px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 13px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   padding: 6px 12px;
   border: 1px solid var(--line);
@@ -2514,7 +2511,9 @@
 }
 
 .cs-pill-badge {
-  font: 600 9px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 9px/1 "PP Neue Montreal Mono",
+    monospace;
   padding: 4px 8px;
   border-radius: 9999px;
   background: rgba(16, 185, 129, 0.15);
@@ -2574,7 +2573,9 @@
 }
 
 .cs-fit-pill {
-  font: 600 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 10px/1 "PP Neue Montreal Mono",
+    monospace;
   padding: 3px 8px;
   border-radius: 4px;
 }
@@ -2710,7 +2711,9 @@
 }
 
 .step-idx {
-  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 10px/1 "PP Neue Montreal Mono",
+    monospace;
   color: #10b981;
   margin-bottom: 12px;
 }
@@ -2763,7 +2766,9 @@
 
 .cs-wordmark small {
   display: block;
-  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 10px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   letter-spacing: 0.2em;
   margin-top: 6px;
@@ -2786,7 +2791,9 @@
 }
 
 .cs-swatch span {
-  font: 600 11px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 11px/1 "PP Neue Montreal Mono",
+    monospace;
 }
 
 .cs-swatch small {
@@ -2836,7 +2843,9 @@
 }
 
 .legend-idx {
-  font: 500 11px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 11px/1 "PP Neue Montreal Mono",
+    monospace;
   color: #10b981;
   margin-bottom: 10px;
   display: block;
@@ -2913,7 +2922,9 @@
 }
 
 .bullet-pill {
-  font: 600 9px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    600 9px/1 "PP Neue Montreal Mono",
+    monospace;
   padding: 3px 8px;
   border-radius: 4px;
   background: rgba(16, 185, 129, 0.15);
@@ -2965,7 +2976,9 @@
 
 .cs-card-caption {
   padding: 14px 20px;
-  font: 500 11px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 11px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   letter-spacing: 0.1em;
   background: rgba(0, 0, 0, 0.5);
@@ -2992,7 +3005,9 @@
 }
 
 .cs-quote-banner cite {
-  font: 400 12px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 12px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   font-style: normal;
   letter-spacing: 0.05em;
@@ -3056,7 +3071,9 @@
   border: 1px solid var(--line);
   background: var(--fill);
   color: var(--ink);
-  font: 500 13px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    500 13px/1 "PP Neue Montreal Mono",
+    monospace;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -3067,7 +3084,9 @@
 }
 
 .cs-footer-copy {
-  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  font:
+    400 11px/1 "PP Neue Montreal Mono",
+    monospace;
   color: var(--muted);
   margin: 0;
 }
@@ -3099,7 +3118,6 @@
     padding: 40px 24px;
   }
 }
-
 
 @media (hover: hover) and (pointer: fine) {
   html,
