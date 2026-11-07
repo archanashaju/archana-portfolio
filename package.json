@@ -1,12 +1,12 @@
 {
-  "name": "figma-make-app",
+  "name": "archana-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --open",
     "format": "oxfmt"
   },
   "dependencies": {
