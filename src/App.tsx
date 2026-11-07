@@ -7,7 +7,7 @@ const nav = ["About", "Works", "Contact"];
 type Route = "home" | "about" | "works" | "lab" | "contact" | "flexshft";
 
 function routeFromPath(): Route {
-  const path = window.location.pathname.replace(/^\/|\/$/g, "");
+  const path = window.location.pathname.replace(/^\/|\/$/g, "").toLowerCase();
   if (path === "about" || path === "works" || path === "contact") return path;
   if (path === "lab") return "works";
   if (path === "flexshft" || path === "project/flexshft") return "flexshft";
@@ -386,8 +386,14 @@ export default function App() {
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
+  const hasMountedRef = useRef(false);
+
   useEffect(() => {
-    if (!soundEnabled) return;
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+    if (route !== "home" || !soundEnabled) return;
     try {
       const AudioCtx =
         window.AudioContext ||
@@ -408,7 +414,7 @@ export default function App() {
     } catch {
       // AudioContext restriction before user gesture
     }
-  }, [activeIndex, soundEnabled]);
+  }, [activeIndex, soundEnabled, route]);
 
   useEffect(() => {
     let frame = 0;
@@ -585,14 +591,14 @@ export default function App() {
           <a
             className="brand"
             href="/"
-            aria-label="Carter Ogunsola home"
+            aria-label="Archana Portfolio home"
             onClick={(event) => {
               event.preventDefault();
               navigate("home");
             }}
           >
-            <span className="brand-pill brand-c">c</span>
-            <span className="brand-pill brand-o">o</span>
+            <span className="brand-pill brand-c">a</span>
+            <span className="brand-pill brand-o">p</span>
             {route !== "home" && (
               <span className="brand-crumb">
                 ::{" "}
@@ -600,7 +606,11 @@ export default function App() {
                   ? "Works"
                   : route === "flexshft"
                     ? "FLEXSHFT"
-                    : route}
+                    : route === "about"
+                      ? "About"
+                      : route === "contact"
+                        ? "Contact"
+                        : route}
               </span>
             )}
           </a>
