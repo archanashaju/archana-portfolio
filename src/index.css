@@ -1,0 +1,3123 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Oracle";
+  src: url("/fonts/oracle.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal Mono";
+  src: url("/fonts/pp-neue-montreal-mono.woff2") format("woff2");
+  font-weight: 300 450;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --surface: #0e0e0e;
+  --ink: #f4f4f4;
+  --muted: rgba(244, 244, 244, 0.55);
+  --line: rgba(255, 255, 255, 0.1);
+  --fill: rgba(255, 255, 255, 0.08);
+  --chrome: rgba(20, 20, 20, 0.75);
+  --card: #181818;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] {
+  --surface: #fdfcfb;
+  --ink: #1e1e1e;
+  --muted: rgba(30, 30, 30, 0.62);
+  --line: rgba(30, 30, 30, 0.1);
+  --fill: rgba(30, 30, 30, 0.075);
+  --chrome: rgba(253, 252, 251, 0.88);
+  --card: #d5d3ce;
+  --shadow: 0 8px 26px rgba(22, 22, 22, 0.16);
+}
+
+:root[data-theme="dark"] {
+  --surface: #0e0e0e;
+  --ink: #f4f4f4;
+  --muted: rgba(244, 244, 244, 0.55);
+  --line: rgba(255, 255, 255, 0.1);
+  --fill: rgba(255, 255, 255, 0.08);
+  --chrome: rgba(20, 20, 20, 0.75);
+  --card: #181818;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "Oracle", Arial, sans-serif;
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease;
+  }
+  button,
+  a {
+    color: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+.site-shell {
+  min-height: 100%;
+  position: relative;
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+  background-size: 130px 130px;
+}
+
+:root[data-theme="light"] .site-shell {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  will-change: transform;
+}
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+.cursor-ring,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  will-change: transform;
+}
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--ink);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(4px);
+  transition:
+    width 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.25s ease;
+}
+.cursor-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--ink);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+.cursor-ring i {
+  position: absolute;
+  opacity: 0;
+  font:
+    400 7px/1 "PP Neue Montreal Mono",
+    monospace;
+  letter-spacing: 0.08em;
+  font-style: normal;
+  transition: opacity 0.18s ease;
+}
+.custom-cursor.is-stage .cursor-ring {
+  width: 62px;
+  height: 62px;
+  color: var(--surface);
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.custom-cursor.is-stage .cursor-dot,
+.custom-cursor.is-link .cursor-dot {
+  opacity: 0;
+}
+.custom-cursor.is-stage .cursor-drag,
+.custom-cursor.is-link .cursor-view {
+  opacity: 1;
+}
+.custom-cursor.is-link .cursor-ring {
+  width: 52px;
+  height: 52px;
+  color: var(--surface);
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.custom-cursor.is-down .cursor-drag::after {
+  content: "GING";
+}
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  pointer-events: none;
+}
+.hud {
+  height: 32px;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 22px;
+  color: rgba(255, 255, 255, 0.45);
+  font:
+    400 9.5px/1 "PP Neue Montreal Mono",
+    monospace;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+.hud span,
+.hud button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.hud b {
+  color: #ffffff;
+  font-weight: 500;
+}
+.hud-sound-toggle {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.header-bar {
+  height: 64px;
+  padding: 12px 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.header a,
+.header button,
+.theme-toggle {
+  pointer-events: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  text-decoration: none;
+}
+.brand-pill {
+  display: grid;
+  place-items: center;
+  height: 32px;
+  background: rgba(20, 20, 20, 0.65);
+  border: 1.2px solid rgba(255, 255, 255, 0.38);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: lowercase;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s, background 0.2s;
+}
+.brand-c {
+  width: 32px;
+  border-radius: 50%;
+}
+.brand-o {
+  width: 46px;
+  border-radius: 16px;
+}
+.brand:hover .brand-pill {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(35, 35, 35, 0.8);
+}
+.brand-crumb {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: capitalize;
+}
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.desktop-nav nav,
+.command-button,
+.theme-toggle,
+.sound-button {
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(22, 22, 22, 0.72);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+}
+.desktop-nav nav {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+}
+.desktop-nav nav a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 450;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    opacity 0.2s,
+    color 0.2s;
+}
+.desktop-nav nav:has(a:hover) a:not(:hover) {
+  opacity: 0.45;
+}
+.desktop-nav nav a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+.command-button {
+  padding: 0 13px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.command-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.icon-button {
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.sound-button {
+  width: 38px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: background 0.2s;
+}
+.sound-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.icon-button svg,
+.theme-toggle svg {
+  width: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.bell i {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #b03a1e;
+}
+.theme-toggle {
+  padding: 3px;
+  display: flex;
+}
+.theme-toggle button {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  transition:
+    opacity 0.2s,
+    background 0.2s,
+    color 0.2s;
+}
+.theme-toggle button.selected {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+.mobile-only {
+  display: none;
+}
+
+/* Live multiplayer cursors */
+.live-cursors-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+.peer-cursor {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  will-change: transform, left, top;
+}
+.peer-arrow {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  flex-shrink: 0;
+}
+.peer-pill {
+  margin-left: 2px;
+  margin-top: 10px;
+  padding: 2.5px 7px;
+  border-radius: 4px;
+  font: 500 9px/1 "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.35);
+  user-select: none;
+}
+
+.wheel-stage {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  isolation: isolate;
+}
+.wheel-stage:active {
+  cursor: grabbing;
+}
+.proof-wheel,
+.die-wheel {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: flat;
+}
+.proof-wheel {
+  perspective: 1200px;
+  perspective-origin: calc(50% - 150px) 50%;
+}
+.die-wheel {
+  perspective: 1200px;
+  perspective-origin: calc(50% + 150px) 50%;
+}
+
+.proof-card,
+.die-card {
+  --hover-x: 0px;
+  --hover-y: 0px;
+  --image-x: 0px;
+  --image-y: 0px;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: absolute;
+  top: 50%;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  pointer-events: none !important;
+  transition:
+    opacity 0.12s linear,
+    filter 0.16s linear;
+}
+
+/* Left Curved Proof Card on cylinder */
+.proof-card {
+  left: var(--x);
+  top: var(--y);
+  width: clamp(280px, 28vw, 440px);
+  aspect-ratio: 16 / 10;
+  transform-origin: center center;
+  transform: translate(-50%, -50%)
+    translate3d(var(--hover-x), var(--hover-y), 0)
+    rotateZ(var(--rot-z))
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y))
+    scale(var(--scale));
+  opacity: var(--opacity);
+  filter: brightness(calc(0.6 + var(--focus) * 0.4));
+  border-radius: 8px;
+  clip-path: url(#curved-screen);
+  -webkit-clip-path: url(#curved-screen);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  will-change: transform, left, top, opacity;
+}
+.proof-card.is-active {
+  pointer-events: auto !important;
+  z-index: 50 !important;
+}
+.proof-card:not(.is-active) {
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+.proof-card.is-active:hover,
+.proof-card.is-hovered {
+  z-index: 60 !important;
+}
+.proof-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  transform: translate3d(var(--image-x), var(--image-y), 0) scale(1.02);
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.45s ease;
+}
+.proof-card.is-hovered img {
+  transform: translate3d(var(--image-x), var(--image-y), 0) scale(1.06);
+  filter: saturate(1.08) contrast(1.03);
+}
+.proof-card::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  transition: opacity 0.35s ease;
+}
+.proof-card.is-hovered::before {
+  opacity: 0.28;
+}
+
+/* Right Beveled Die Card on cylinder */
+.die-card {
+  left: var(--x);
+  top: var(--y);
+  width: clamp(120px, 10.5vw, 175px);
+  aspect-ratio: 1;
+  transform-origin: center center;
+  transform: translate(-50%, -50%)
+    translate3d(var(--hover-x), var(--hover-y), 0)
+    rotateZ(var(--rot-z))
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y))
+    scale(var(--scale));
+  opacity: var(--opacity);
+  filter: brightness(calc(0.65 + var(--focus) * 0.35));
+  will-change: transform, left, top, opacity;
+}
+.die-card.is-active {
+  pointer-events: auto !important;
+  z-index: 50 !important;
+}
+.die-card:not(.is-active) {
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+.die-card.is-active:hover,
+.die-card.is-hovered {
+  z-index: 60 !important;
+}
+.die-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 1.2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: linear-gradient(145deg, #242424 0%, #111111 100%);
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.7),
+    inset 1px 1px 1.5px rgba(255, 255, 255, 0.32),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.85);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: hidden;
+}
+.die-card.is-hovered .die-face {
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, 0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.45),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.85);
+}
+
+/* Die Emblems */
+.clay-rainbow-wrap {
+  width: 78%;
+  height: 78%;
+  display: grid;
+  place-items: center;
+}
+.clay-rainbow-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.55));
+}
+.emblem-1820-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.emblem-1820-text {
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, #ffffff 0%, #d4d4d8 50%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+  font-family: "Oracle", sans-serif;
+}
+.emblem-1820-sub {
+  font: 600 7px/1 "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.emblem-helion-box {
+  width: 68%;
+  height: 68%;
+  display: grid;
+  place-items: center;
+}
+.helion-pulse-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.5));
+}
+.emblem-firelight-box {
+  width: 68%;
+  height: 68%;
+  display: grid;
+  place-items: center;
+}
+.firelight-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.5));
+}
+.emblem-ftg-box {
+  width: 72%;
+  height: 72%;
+  display: grid;
+  place-items: center;
+}
+.emblem-ftg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.65)) brightness(1.05);
+}
+.emblem-flexshft-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emblem-flexshft-img {
+  width: 36%;
+  height: 36%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7)) brightness(1.1);
+}
+.emblem-hotcoin-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emblem-hotcoin-svg {
+  width: 36%;
+  height: 36%;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7)) brightness(1.1);
+}
+.emblem-tinybits-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emblem-tinybits-svg {
+  width: 36%;
+  height: 36%;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7)) brightness(1.1);
+}
+.die-emblem-default {
+  display: grid;
+  place-items: center;
+}
+.die-monogram {
+  font-size: clamp(30px, 3.6vw, 54px);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.45);
+  text-shadow:
+    1px 1px 2px rgba(255, 255, 255, 0.15),
+    -1px -1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Center Project Typography */
+.project-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 30;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: auto;
+  user-select: none;
+  animation: center-in 0.4s cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+.project-number {
+  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 16px;
+  text-transform: uppercase;
+}
+.project-title {
+  font-size: clamp(38px, 4.4vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0 0 16px;
+}
+.project-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font: 400 9.5px/1 "PP Neue Montreal Mono", monospace;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+.project-view-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 18px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.project-view-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+.view-button {
+  width: fit-content;
+  margin: 24px auto 0;
+  padding: 10px 14px 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 8px;
+  background: var(--fill);
+  font-size: 11px;
+  text-decoration: none;
+  pointer-events: auto;
+  transition:
+    background 0.25s,
+    transform 0.25s;
+}
+.view-button:hover {
+  background: var(--ink);
+  color: var(--surface);
+  transform: translateY(-2px);
+}
+.view-button svg {
+  width: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.turn-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 17px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+  letter-spacing: 0.06em;
+}
+
+.page-scroll {
+  height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
+}
+.page-container {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+}
+.section-label {
+  color: var(--muted);
+  font:
+    400 9px/1.2 "PP Neue Montreal Mono",
+    monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* About — the front office */
+.about-page {
+  background: #d9d7d1;
+  color: #1e1e1e;
+}
+.office {
+  position: relative;
+  min-height: 100svh;
+  padding-top: 112px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 48% 45%, rgba(255, 255, 255, 0.35), transparent 32%),
+    linear-gradient(108deg, #cbc8c0, #e4e2dc 48%, #c8c5bd);
+  box-shadow: inset 0 -35px 70px rgba(55, 48, 39, 0.08);
+}
+.office::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.office-caption {
+  position: relative;
+  z-index: 2;
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.office-caption span:first-child {
+  margin-right: auto;
+  font-family: "Oracle", sans-serif;
+  font-size: 14px;
+  text-transform: none;
+}
+.desk-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 0px;
+  --my: 0px;
+  position: absolute;
+  z-index: 3;
+  border: 1px solid rgba(30, 30, 30, 0.18);
+  background: #eeece6;
+  box-shadow: 0 24px 45px rgba(45, 39, 31, 0.18);
+  transform: perspective(1200px) translate3d(var(--mx), var(--my), 0) rotateX(var(--rx))
+    rotateY(var(--ry)) rotate(var(--card-rotation));
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.75, 0.2, 1),
+    box-shadow 0.4s ease;
+  will-change: transform;
+}
+.desk-card:hover {
+  box-shadow: 0 34px 58px rgba(45, 39, 31, 0.24);
+}
+.profile-file {
+  --card-rotation: -1.2deg;
+  top: 20%;
+  left: 50%;
+  width: min(42vw, 560px);
+  min-height: 58vh;
+  padding: 18px;
+  transform-origin: 50% 70%;
+}
+.file-top,
+.card-kicker,
+.city-row,
+.radio-time,
+.radio-stations {
+  display: flex;
+  justify-content: space-between;
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.portrait-mark {
+  height: 31vh;
+  margin: 18px 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(30, 30, 30, 0.13);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 22px, rgba(30, 30, 30, 0.035) 23px), #d1cfc9;
+  color: rgba(30, 30, 30, 0.78);
+  font-size: clamp(80px, 13vw, 190px);
+  font-weight: 700;
+  letter-spacing: -0.13em;
+}
+.profile-file h1 {
+  margin: 0;
+  font-size: clamp(34px, 4.7vw, 70px);
+  font-weight: 450;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+.profile-file > p {
+  margin: 10px 0 32px;
+  font-size: 16px;
+}
+.file-coordinate {
+  padding-top: 12px;
+  border-top: 1px solid rgba(30, 30, 30, 0.22);
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+}
+.telemetry-card {
+  --card-rotation: -3deg;
+  top: 40%;
+  left: 9%;
+  width: min(30vw, 380px);
+  padding: 15px;
+}
+.telemetry-map {
+  height: 155px;
+  position: relative;
+  margin: 12px 0;
+  overflow: hidden;
+  background: #242424;
+}
+.telemetry-map svg {
+  width: 100%;
+  height: 100%;
+}
+.telemetry-map path {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+.telemetry-map i {
+  position: absolute;
+  z-index: 2;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.lagos-dot {
+  left: 10%;
+  top: 70%;
+}
+.utah-dot {
+  right: 9%;
+  top: 42%;
+}
+.telemetry-card > p {
+  margin: 12px 0 0;
+  color: rgba(30, 30, 30, 0.62);
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.radio-card {
+  --card-rotation: 2.6deg;
+  top: 34%;
+  right: 7%;
+  width: min(28vw, 360px);
+  padding: 15px;
+  background: #c6bfae;
+}
+.radio-dial {
+  height: 175px;
+  margin: 12px 0;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 50%;
+  background: radial-gradient(circle, #252525 0 33%, #9d9687 34% 35%, transparent 36%);
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.radio-dial span {
+  color: #fff;
+}
+.radio-dial i {
+  position: absolute;
+  width: 84%;
+  height: 84%;
+  border: 1px dashed rgba(30, 30, 30, 0.45);
+  border-radius: 50%;
+  animation: radio-spin 12s linear infinite;
+}
+@keyframes radio-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+.radio-stations {
+  margin-top: 17px;
+  font-size: 17px;
+}
+.scroll-note {
+  position: absolute;
+  z-index: 4;
+  bottom: 18px;
+  left: 50%;
+  translate: -50%;
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.about-letter,
+.record,
+.accolades {
+  padding-block: clamp(100px, 15vw, 190px);
+}
+.about-letter {
+  display: grid;
+  grid-template-columns: 1fr 2.15fr;
+  gap: 7vw;
+}
+.about-letter h2,
+.record-head h2 {
+  margin: 0 0 45px;
+  font-size: clamp(38px, 6vw, 82px);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+.letter-copy {
+  grid-column: 2;
+  font-size: clamp(20px, 2.2vw, 31px);
+  line-height: 1.28;
+  letter-spacing: -0.025em;
+}
+.letter-copy p {
+  margin: 0 0 1.3em;
+}
+.letter-copy a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.record,
+.accolades {
+  border-top: 1px solid rgba(30, 30, 30, 0.18);
+}
+.record-head {
+  display: grid;
+  grid-template-columns: 1fr 2.15fr;
+  gap: 7vw;
+}
+.record-row,
+.award-row {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 0.5fr;
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.18);
+  font-size: 14px;
+}
+.record-labels {
+  color: rgba(30, 30, 30, 0.56);
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.award-grid {
+  display: grid;
+  grid-template-columns: 1fr 2.15fr;
+  gap: 7vw;
+}
+
+/* Lab */
+.lab-page {
+  padding-top: 108px;
+  background: var(--surface);
+}
+.lab-intro {
+  padding: 75px 0 90px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+.lab-intro h1 {
+  grid-column: 2;
+  margin: 0;
+  font-size: clamp(52px, 8vw, 118px);
+  font-weight: 400;
+  line-height: 0.84;
+  letter-spacing: -0.075em;
+}
+.lab-intro > p:last-child {
+  grid-column: 2;
+  width: min(480px, 100%);
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.lab-catalogue {
+  width: calc(100% - 28px);
+  margin: 0 auto 120px;
+}
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 55px 10px;
+}
+.experiment {
+  display: block;
+  min-width: 0;
+  text-decoration: none;
+}
+.experiment-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--fill);
+}
+.experiment-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+.experiment:hover img {
+  transform: scale(1.045);
+}
+.experiment-image > span {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: rgba(250, 250, 248, 0.86);
+  color: #1e1e1e;
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+  backdrop-filter: blur(8px);
+}
+.experiment-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 2px;
+}
+.experiment-meta h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 450;
+}
+.experiment-meta > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.experiment-meta b {
+  padding: 3px 5px;
+  border-radius: 4px;
+  background: var(--fill);
+  color: var(--ink);
+  font-weight: 400;
+}
+.lab-list {
+  display: flex;
+  flex-direction: column;
+}
+.lab-list .experiment {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  border-top: 1px solid var(--line);
+}
+.lab-list .experiment-image {
+  aspect-ratio: 4 / 3;
+}
+.lab-list .experiment-meta {
+  align-items: center;
+  padding-inline: 20px;
+}
+.lab-list .experiment-meta h2 {
+  font-size: clamp(24px, 4vw, 58px);
+  letter-spacing: -0.04em;
+}
+.lab-wheel {
+  height: min(660px, calc(100svh - 155px));
+  padding: 45px 34vw;
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.lab-wheel::-webkit-scrollbar {
+  display: none;
+}
+.lab-wheel .experiment {
+  width: min(37vw, 510px);
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.75, 0.2, 1),
+    opacity 0.4s ease;
+}
+.lab-wheel .experiment:nth-child(even) {
+  transform: translateY(7%) rotate(2.5deg);
+}
+.lab-wheel .experiment:hover {
+  transform: translateY(-2%) rotate(0) scale(1.03);
+}
+.lab-switcher {
+  position: fixed;
+  z-index: 15;
+  left: 50%;
+  bottom: 16px;
+  translate: -50%;
+  display: flex;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--chrome);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+.lab-switcher button {
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 10px;
+}
+.lab-switcher button.active {
+  background: var(--fill);
+}
+
+/* Contact */
+.contact-page {
+  padding-top: 110px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.35), transparent 28%), #c9c6be;
+  color: #1e1e1e;
+}
+.letter-desk {
+  width: min(1050px, calc(100% - 36px));
+  min-height: calc(100svh - 110px);
+  margin: 0 auto;
+  padding: 45px 0 90px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.contact-sheet {
+  position: relative;
+  z-index: 2;
+  width: min(680px, 75%);
+  min-height: 880px;
+  padding: clamp(28px, 5vw, 65px);
+  background: #f5f2e9;
+  box-shadow: 0 30px 70px rgba(35, 31, 25, 0.22);
+  rotate: -0.5deg;
+}
+.contact-letterhead {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.25);
+  font-size: 11px;
+}
+.contact-letterhead p {
+  margin: 3px 0;
+  color: rgba(30, 30, 30, 0.62);
+}
+.contact-letterhead a {
+  text-underline-offset: 3px;
+}
+.contact-logo {
+  display: flex;
+  gap: 2px;
+}
+.contact-logo span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #1e1e1e;
+  color: #f5f2e9;
+  font-size: 12px;
+}
+.contact-logo span:last-child {
+  width: 55px;
+  border-radius: 20px;
+}
+.letter-date {
+  margin-top: 35px;
+  text-align: right;
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+}
+.contact-sheet > h1 {
+  margin: 48px 0 35px;
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 400;
+  font-style: italic;
+}
+.contact-sheet fieldset {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 30px;
+  padding: 0;
+  border: 0;
+}
+.contact-sheet legend,
+.line-field span,
+.letter-field > span {
+  margin-bottom: 8px;
+  display: block;
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.contact-sheet fieldset button {
+  padding: 7px 10px;
+  border: 1px solid rgba(30, 30, 30, 0.2);
+  border-radius: 5px;
+  background: transparent;
+  font-size: 10px;
+}
+.contact-sheet fieldset button.selected {
+  background: #1e1e1e;
+  color: #f5f2e9;
+}
+.line-field {
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  align-items: end;
+  margin-bottom: 18px;
+}
+.line-field input {
+  border: 0;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.35);
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+}
+.letter-field {
+  display: block;
+  margin-top: 30px;
+}
+.letter-field textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px 0;
+  resize: none;
+  outline: none;
+  border: 0;
+  background-image: repeating-linear-gradient(transparent 0 29px, rgba(30, 30, 30, 0.16) 30px);
+  line-height: 30px;
+}
+.sincerely {
+  margin: 30px 0 4px;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+.signature {
+  height: 95px;
+  position: relative;
+  border-bottom: 1px solid rgba(30, 30, 30, 0.4);
+}
+.signature canvas {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.signature > span {
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  color: rgba(30, 30, 30, 0.35);
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+  pointer-events: none;
+}
+.signature button {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  border: 0;
+  background: transparent;
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.sheet-foot {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(30, 30, 30, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font:
+    400 7px "PP Neue Montreal Mono",
+    monospace;
+}
+.sheet-foot > button {
+  padding: 11px 14px;
+  border: 0;
+  border-radius: 7px;
+  background: #1e1e1e;
+  color: #fff;
+}
+.intake-stub {
+  width: 240px;
+  margin-top: 80px;
+  margin-left: -8px;
+  padding: 20px;
+  border-left: 1px dashed rgba(30, 30, 30, 0.5);
+  background: #e2ddd0;
+  box-shadow: 15px 22px 45px rgba(35, 31, 25, 0.14);
+  rotate: 1.5deg;
+  font:
+    400 8px "PP Neue Montreal Mono",
+    monospace;
+}
+.intake-stub > span {
+  display: block;
+  margin: 5px 0 25px;
+}
+.intake-stub dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-block: 15px;
+  border-block: 1px solid rgba(30, 30, 30, 0.25);
+}
+.intake-stub dt,
+.intake-stub dd {
+  margin: 0;
+}
+.intake-stub strong {
+  display: block;
+  margin-top: 28px;
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(18, 18, 18, 0.3);
+  backdrop-filter: blur(8px);
+  animation: fade 0.25s ease;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+.modal {
+  position: relative;
+  width: min(480px, 100%);
+  max-height: min(660px, 86vh);
+  padding: 18px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+.modal-close {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--fill);
+  font: 300 21px/1 sans-serif;
+}
+.search-line {
+  height: 46px;
+  margin-right: 37px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-bottom: 1px solid var(--line);
+}
+.search-line svg {
+  width: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.search-line input {
+  width: 100%;
+  outline: none;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  color: var(--ink);
+}
+.modal-label {
+  margin: 22px 0 10px;
+  color: var(--muted);
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.result {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 8px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 13px;
+}
+.result:hover {
+  background: var(--fill);
+}
+.result small,
+.news-meta {
+  color: var(--muted);
+  font:
+    400 10px "PP Neue Montreal Mono",
+    monospace;
+}
+.modal-news h2 {
+  margin: 18px 0 4px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.news-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.mobile-menu a {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+.mobile-menu small {
+  font:
+    400 9px "PP Neue Montreal Mono",
+    monospace;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .hud {
+    height: 24px;
+    justify-content: space-between;
+    padding: 0 9px;
+    gap: 0;
+  }
+  .hud-optional {
+    display: none !important;
+  }
+  .header-bar {
+    height: 61px;
+    padding: 10px 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .brand-c,
+  .brand-o {
+    height: 31px;
+  }
+  .brand-c {
+    width: 31px;
+  }
+  .brand-o {
+    width: 44px;
+  }
+  .brand-crumb {
+    font-size: 10px;
+  }
+  .desktop-nav,
+  .bell {
+    display: none;
+  }
+  .mobile-only {
+    display: grid;
+  }
+  .header-actions {
+    gap: 2px;
+  }
+  .theme-toggle {
+    height: 36px;
+    border-radius: 9px;
+  }
+  .theme-toggle button {
+    width: 29px;
+  }
+  .icon-button {
+    width: 35px;
+    height: 35px;
+  }
+  .menu-button {
+    width: 35px;
+    height: 35px;
+    place-content: center;
+    gap: 5px;
+    border: 0;
+    background: transparent;
+  }
+  .menu-button span {
+    display: block;
+    width: 17px;
+    height: 1px;
+    background: currentColor;
+  }
+  .proof-card,
+  .die-card {
+    --y: calc(var(--distance) * 37vw);
+  }
+  .proof-card {
+    top: 30%;
+    left: 50%;
+    width: min(58vw, 260px);
+    transform: translate(calc(-50% + var(--y)), -50%) rotate(calc(var(--distance) * 6deg))
+      rotate(var(--lean)) scale(calc(var(--scale) - var(--focus) * 0.12));
+  }
+  .die-card {
+    top: 72%;
+    right: auto;
+    left: 50%;
+    width: min(28vw, 132px);
+    transform: translate(calc(-50% - var(--y)), -50%) rotate(calc(var(--distance) * -7deg))
+      rotate(var(--lean)) scale(calc(var(--scale) - var(--focus) * 0.12));
+  }
+  .project-center {
+    top: 51.5%;
+    width: 86vw;
+  }
+  .project-center h1 {
+    font-size: clamp(24px, 8vw, 34px);
+    margin-top: 8px;
+  }
+  .chips {
+    margin-top: 10px;
+  }
+  .view-button {
+    margin-top: 15px;
+    padding: 8px 12px 8px 14px;
+  }
+  .turn-hint {
+    bottom: 10px;
+  }
+  .page-container {
+    width: calc(100% - 28px);
+  }
+  .office {
+    min-height: 920px;
+    padding-top: 95px;
+  }
+  .office-caption {
+    width: calc(100% - 28px);
+  }
+  .office-caption span:not(:first-child) {
+    display: none;
+  }
+  .profile-file {
+    top: 16%;
+    left: 10%;
+    width: 80%;
+    min-height: 490px;
+  }
+  .portrait-mark {
+    height: 225px;
+  }
+  .telemetry-card {
+    top: 65%;
+    left: -8%;
+    width: 64%;
+  }
+  .radio-card {
+    top: 62%;
+    right: -12%;
+    width: 61%;
+  }
+  .telemetry-map {
+    height: 110px;
+  }
+  .radio-dial {
+    height: 120px;
+  }
+  .about-letter,
+  .record-head,
+  .award-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-letter {
+    gap: 35px;
+  }
+  .letter-copy {
+    grid-column: 1;
+  }
+  .about-letter h2,
+  .record-head h2 {
+    margin-bottom: 28px;
+  }
+  .record-row,
+  .award-row {
+    grid-template-columns: 1.2fr 1fr 0.55fr;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .lab-page {
+    padding-top: 85px;
+  }
+  .lab-intro {
+    padding: 55px 0 65px;
+    grid-template-columns: 1fr;
+  }
+  .lab-intro h1,
+  .lab-intro > p:last-child {
+    grid-column: 1;
+  }
+  .lab-intro h1 {
+    font-size: 17vw;
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+  .lab-list .experiment {
+    grid-template-columns: 95px 1fr;
+  }
+  .lab-list .experiment-meta {
+    padding-inline: 12px;
+  }
+  .lab-wheel {
+    height: 62vh;
+    padding-inline: 16vw;
+    gap: 9vw;
+  }
+  .lab-wheel .experiment {
+    width: 72vw;
+  }
+  .contact-page {
+    padding-top: 85px;
+  }
+  .letter-desk {
+    width: calc(100% - 18px);
+    padding-top: 20px;
+    display: block;
+  }
+  .contact-sheet {
+    width: 100%;
+    min-height: 810px;
+    padding: 25px 20px;
+  }
+  .contact-letterhead {
+    align-items: flex-start;
+    font-size: 9px;
+  }
+  .contact-logo span {
+    width: 31px;
+    height: 31px;
+  }
+  .contact-logo span:last-child {
+    width: 42px;
+  }
+  .contact-sheet fieldset {
+    flex-wrap: wrap;
+  }
+  .intake-stub {
+    width: 74%;
+    margin: -2px 0 40px auto;
+    border-top: 1px dashed rgba(30, 30, 30, 0.5);
+    border-left: 0;
+  }
+}
+
+/* =========================================================================
+   FLEXSHFT Inner Case Study Page
+   ========================================================================= */
+
+.flexshft-page {
+  padding-top: 104px;
+  padding-bottom: 120px;
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 100svh;
+}
+
+.cs-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 50px;
+}
+
+.cs-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: var(--fill);
+  color: var(--ink);
+  font: 500 12px/1 "PP Neue Montreal Mono", monospace;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cs-back-btn:hover {
+  background: var(--ink);
+  color: var(--surface);
+  transform: translateX(-3px);
+}
+
+.cs-topbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-meta-pill {
+  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
+  padding: 5px 11px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.cs-meta-live {
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.cs-view-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--fill);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.cs-toggle-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-toggle-btn.active {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+/* Hero Section */
+.cs-hero-dark-block {
+  padding: 40px 0 80px;
+  margin-bottom: 70px;
+  background: radial-gradient(circle at 50% 0%, #1f1f26 0%, #0d0d10 65%, #050507 100%);
+  border-bottom: 1px solid var(--line);
+}
+
+.cs-hero-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-hero {
+  margin-bottom: 80px;
+}
+
+.cs-hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.cs-hero-title {
+  font-size: clamp(52px, 9.5vw, 120px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0 0 24px;
+}
+
+.cs-hero-lead {
+  font-size: clamp(16px, 1.8vw, 22px);
+  color: var(--muted);
+  max-width: 840px;
+  line-height: 1.5;
+  margin: 0 0 48px;
+}
+
+.cs-hero-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+  box-shadow: 0 35px 85px rgba(0, 0, 0, 0.7);
+}
+
+.cs-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.cs-frame-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.08), transparent 70%);
+}
+
+/* Full Presentation Sheet View */
+.cs-sheet-section {
+  margin-bottom: 80px;
+}
+
+.cs-sheet-header {
+  margin-bottom: 24px;
+}
+
+.cs-sheet-header h2 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.cs-sheet-header p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 14px;
+}
+
+.cs-sheet-wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0a0a0a;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.cs-sheet-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Metadata Grid */
+.cs-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 80px;
+}
+
+.cs-spec-cell {
+  padding: 24px 26px;
+  border-radius: 12px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spec-label {
+  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.spec-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+/* Editorial Narrative Section */
+.cs-editorial-section {
+  margin-bottom: 90px;
+}
+
+.cs-editorial-header {
+  margin-bottom: 28px;
+}
+
+.cs-editorial-header h2 {
+  font-size: clamp(28px, 4.2vw, 52px);
+  margin: 12px 0 0;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.cs-editorial-columns {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.cs-lead-paragraph {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Sectors Section */
+.cs-sectors-section {
+  margin-bottom: 90px;
+}
+
+.cs-sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.cs-sector-card {
+  padding: 26px 24px;
+  border-radius: 16px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+.sector-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.sector-icon {
+  font-size: 28px;
+}
+
+.sector-badge {
+  font: 600 10px/1 "PP Neue Montreal Mono", monospace;
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.cs-sector-card h3 {
+  font-size: 18px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.sector-roles {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 20px;
+  flex-grow: 1;
+  line-height: 1.45;
+}
+
+.sector-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  font-size: 11px;
+}
+
+.sector-avg {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sector-rate-tag {
+  color: #10b981;
+  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+}
+
+/* User Flow Journey Diagram */
+.cs-flow-diagram-section {
+  margin-bottom: 90px;
+}
+
+.cs-journey-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--fill);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+}
+
+.journey-node {
+  flex: 1 1 160px;
+  padding: 20px 18px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.journey-num {
+  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  color: #10b981;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.journey-node h4 {
+  font-size: 14px;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+.journey-node p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.journey-arrow {
+  color: var(--muted);
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+.journey-node-success {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+/* Employer Management Dashboard */
+.cs-employer-section {
+  margin-bottom: 90px;
+}
+
+.cs-employer-dashboard-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0d0d10;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+.dashboard-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: #141418;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+  font-family: "PP Neue Montreal Mono", monospace;
+}
+
+.dashboard-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dashboard-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dashboard-dots span:nth-child(1) { background: #ef4444; }
+.dashboard-dots span:nth-child(2) { background: #f59e0b; }
+.dashboard-dots span:nth-child(3) { background: #10b981; }
+
+.dashboard-status {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.dashboard-content {
+  padding: 26px;
+}
+
+.dashboard-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.d-stat {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+}
+
+.d-stat-label {
+  display: block;
+  font: 400 9px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.d-stat-val {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1.2fr 1.5fr 1fr 1fr;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  min-width: 680px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1.2fr 1.5fr 1fr 1fr;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  color: #d4d4d8;
+  font-size: 12px;
+  min-width: 680px;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.col-worker {
+  font-weight: 600;
+  color: #fff;
+}
+
+.status-badge {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font: 600 9px/1 "PP Neue Montreal Mono", monospace;
+  display: inline-block;
+  width: fit-content;
+}
+
+.status-active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-transit {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Problem vs Solution */
+.cs-dossier-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.cs-dossier-card {
+  padding: 38px 34px;
+  border-radius: 16px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+}
+
+.cs-dossier-card h3 {
+  font-size: 24px;
+  margin: 14px 0 16px;
+}
+
+.cs-dossier-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+.cs-card-highlight {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--fill) 100%);
+}
+
+.cs-stat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cs-stat-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cs-stat-list li b {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Interactive Simulator */
+.cs-interactive-section {
+  margin-bottom: 90px;
+}
+
+.cs-section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.section-num {
+  font: 400 13px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.cs-section-head h2 {
+  font-size: clamp(26px, 3.5vw, 42px);
+  margin: 0 0 10px;
+}
+
+.cs-section-head p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 15px;
+}
+
+.cs-mockup-wrapper {
+  display: grid;
+  grid-template-columns: minmax(320px, 400px) 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.cs-phone-shell {
+  background: #0d0d10;
+  border: 2px solid #27272a;
+  border-radius: 38px;
+  padding: 22px 18px 24px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+}
+
+.cs-phone-notch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px 16px;
+  font-size: 11px;
+  color: #71717a;
+}
+
+.phone-speaker {
+  width: 50px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #27272a;
+}
+
+.cs-phone-userbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 6px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+}
+
+.cs-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.cs-user-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.cs-user-location {
+  margin: 2px 0 0;
+  font-size: 10px;
+  color: #a1a1aa;
+}
+
+.cs-pill-badge {
+  font: 600 9px/1 "PP Neue Montreal Mono", monospace;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.cs-filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.cs-filter-pill {
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  border: 1px solid #27272a;
+  background: transparent;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cs-filter-pill.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  font-weight: 600;
+}
+
+.cs-shift-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-shift-card {
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.25s ease;
+}
+
+.cs-shift-card.claimed {
+  border-color: #10b981;
+  background: #10261e;
+}
+
+.cs-card-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cs-fit-pill {
+  font: 600 10px/1 "PP Neue Montreal Mono", monospace;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.cs-company-rating {
+  font-size: 11px;
+  color: #facc15;
+}
+
+.cs-card-body {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cs-company-avatar {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #27272a;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.cs-role-details h4 {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.cs-company-title {
+  margin: 0 0 4px;
+  font-size: 11px;
+  color: #a1a1aa;
+}
+
+.cs-meta-text {
+  margin: 0;
+  font-size: 10px;
+  color: #71717a;
+  line-height: 1.35;
+}
+
+.cs-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cs-pay-block {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.cs-pay-total {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cs-pay-rate {
+  font-size: 11px;
+  color: #a1a1aa;
+}
+
+.cs-claim-btn {
+  padding: 7px 15px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  border: none;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cs-claim-btn.is-claimed {
+  background: #10b981;
+  color: #fff;
+}
+
+.cs-phone-side-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cs-note-box {
+  padding: 24px 28px;
+  border-radius: 14px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+}
+
+.cs-note-box h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.cs-note-box p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* 5-Step Core Lifecycle */
+.cs-flow-section {
+  margin-bottom: 90px;
+}
+
+.cs-flow-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.cs-step-item {
+  padding: 26px 22px;
+  border-radius: 12px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+.step-idx {
+  font: 500 10px/1 "PP Neue Montreal Mono", monospace;
+  color: #10b981;
+  margin-bottom: 12px;
+}
+
+.cs-step-item h3 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.cs-step-item p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Brand Identity Section */
+.cs-identity-section {
+  margin-bottom: 90px;
+}
+
+.cs-identity-canvas {
+  padding: 44px;
+  border-radius: 18px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.cs-logo-hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cs-brand-glyph {
+  width: 90px;
+  height: 90px;
+}
+
+.cs-wordmark span {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+}
+
+.cs-wordmark small {
+  display: block;
+  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  margin-top: 6px;
+}
+
+.cs-palette-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.cs-swatch {
+  height: 80px;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid var(--line);
+}
+
+.cs-swatch span {
+  font: 600 11px/1 "PP Neue Montreal Mono", monospace;
+}
+
+.cs-swatch small {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-top: 3px;
+}
+
+/* Mockup Showcase Blocks */
+.cs-media-block {
+  margin-bottom: 90px;
+}
+
+.cs-mockup-showcase {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #111114;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  margin-bottom: 24px;
+}
+
+.cs-showcase-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-showcase-grid-notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cs-quad-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.legend-item {
+  padding: 24px 20px;
+  border-radius: 14px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+}
+
+.legend-idx {
+  font: 500 11px/1 "PP Neue Montreal Mono", monospace;
+  color: #10b981;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.legend-item h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.legend-item p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* Chat Feature Section */
+.cs-chat-feature-section {
+  margin-bottom: 90px;
+}
+
+.cs-chat-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 460px) 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.cs-chat-visual {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0c0c0e;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75);
+}
+
+.cs-chat-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-chat-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-chat-copy h2 {
+  font-size: clamp(26px, 3.5vw, 40px);
+  margin: 0;
+}
+
+.cs-chat-lead {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cs-chat-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.bullet-card {
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+}
+
+.bullet-pill {
+  font: 600 9px/1 "PP Neue Montreal Mono", monospace;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  margin-bottom: 8px;
+  display: inline-block;
+  letter-spacing: 0.05em;
+}
+
+.bullet-card h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.bullet-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Brand Showcase Grid Duo */
+.cs-brand-showcase-section {
+  margin-bottom: 90px;
+}
+
+.cs-brand-grid-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.cs-brand-card {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #111114;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-brand-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.cs-card-caption {
+  padding: 14px 20px;
+  font: 500 11px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--line);
+}
+
+/* Philosophy Banner */
+.cs-quote-banner {
+  padding: 60px 48px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.08) 0%, #0d0d10 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+.cs-quote-banner blockquote {
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: #f4f4f4;
+  max-width: 860px;
+  margin: 0 auto 20px;
+}
+
+.cs-quote-banner cite {
+  font: 400 12px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  font-style: normal;
+  letter-spacing: 0.05em;
+}
+
+/* Metrics Section */
+.cs-metrics-section {
+  margin-bottom: 100px;
+}
+
+.cs-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.cs-metric-card {
+  padding: 30px 26px;
+  border-radius: 14px;
+  background: var(--fill);
+  border: 1px solid var(--line);
+}
+
+.metric-num {
+  display: block;
+  font-size: clamp(38px, 4.5vw, 54px);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.metric-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.metric-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Footer Navigation */
+.cs-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.cs-footer-back {
+  padding: 10px 22px;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: var(--fill);
+  color: var(--ink);
+  font: 500 13px/1 "PP Neue Montreal Mono", monospace;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cs-footer-back:hover {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.cs-footer-copy {
+  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .cs-editorial-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .journey-arrow {
+    display: none;
+  }
+  .cs-dossier-duo {
+    grid-template-columns: 1fr;
+  }
+  .cs-mockup-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .cs-showcase-grid-notes {
+    grid-template-columns: 1fr;
+  }
+  .cs-chat-grid {
+    grid-template-columns: 1fr;
+  }
+  .cs-brand-grid-duo {
+    grid-template-columns: 1fr;
+  }
+  .cs-quote-banner {
+    padding: 40px 24px;
+  }
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  .wheel-stage,
+  .wheel-stage:active {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
