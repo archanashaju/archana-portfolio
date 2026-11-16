@@ -475,23 +475,6 @@ export function AboutPage({
         </div>
       </section>
 
-      {/* Personal Perspective (Always curious. Always creating.) */}
-      <section className="clone-personal-section page-container">
-        <div className="clone-personal-card">
-          <span className="bullet-kicker">• Perspective</span>
-          <h2 className="personal-headline">Always curious. Always creating.</h2>
-          <div className="personal-paragraphs">
-            <p>
-              Outside of designing interfaces, I enjoy exploring creative ideas, discovering inspiring
-              digital products, and learning new ways to approach everyday problems.
-            </p>
-            <p>
-              I'm naturally curious about how things work, and that curiosity continues to influence
-              the way I think and create.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* ====================================================================
           CHAPTER 04: DARK BANNER CTA (Clone of Image 2 Bottom)

@@ -1322,10 +1322,9 @@
   color: var(--ink);
 }
 
-/* Toolkit, Journey & Perspective */
+/* Toolkit & Journey */
 .clone-toolkit-section,
-.clone-journey-section,
-.clone-personal-section {
+.clone-journey-section {
   margin-top: clamp(80px, 9vw, 120px);
 }
 
@@ -1457,32 +1456,6 @@
   margin: 0;
 }
 
-.clone-personal-card {
-  border: 1px solid var(--line);
-  background: var(--fill);
-  border-radius: 12px;
-  padding: clamp(36px, 5vw, 56px);
-  margin: 0 auto;
-  max-width: 900px;
-}
-
-.personal-headline {
-  font-family: "Oracle", sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  color: var(--ink);
-  margin: 14px 0 20px;
-}
-
-.personal-paragraphs {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--muted);
-}
 
 /* -------------------------------------------------------------------------
    CHAPTER 04: DARK BANNER CTA (Image 2 Bottom Clone)
