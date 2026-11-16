@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#2a2928"/>
+      <stop offset="60%" stop-color="#141312"/>
+      <stop offset="100%" stop-color="#090908"/>
+    </radialGradient>
+    <linearGradient id="softLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.15 0"/>
+      <feComposite in2="SourceGraphic" in="gl" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  <rect width="800" height="1000" fill="url(#softLight)"/>
+
+  <!-- Minimalist Geometric / Architectural Portrait Artwork -->
+  <g opacity="0.9">
+    <!-- Subtle architectural guidelines -->
+    <line x1="120" y1="0" x2="120" y2="1000" stroke="#ffffff" stroke-opacity="0.06" stroke-dasharray="4 8"/>
+    <line x1="680" y1="0" x2="680" y2="1000" stroke="#ffffff" stroke-opacity="0.06" stroke-dasharray="4 8"/>
+    <line x1="0" y1="500" x2="800" y2="500" stroke="#ffffff" stroke-opacity="0.06" stroke-dasharray="4 8"/>
+
+    <!-- Central Sculptural Composition (Swiss Modernist Studio Silhouette) -->
+    <circle cx="400" cy="380" r="180" fill="#1b1a19" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5"/>
+    <circle cx="400" cy="380" r="130" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-dasharray="6 6"/>
+
+    <!-- Monogram Core -->
+    <text x="400" y="405" font-family="'Oracle', sans-serif" font-size="96" font-weight="600" fill="#f4f4f4" text-anchor="middle" letter-spacing="-4">AS</text>
+
+    <!-- Supporting Architectural Shapes -->
+    <path d="M 260 620 C 320 540, 480 540, 540 620 L 620 860 L 180 860 Z" fill="#171615" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+    <line x1="260" y1="620" x2="540" y2="620" stroke="#ffffff" stroke-opacity="0.15"/>
+
+    <!-- Swiss Studio Labeling -->
+    <text x="400" y="680" font-family="'PP Neue Montreal Mono', monospace" font-size="12" fill="#888888" text-anchor="middle" letter-spacing="4">ARCHANA SHAJU · UI/UX</text>
+    <text x="400" y="705" font-family="'PP Neue Montreal Mono', monospace" font-size="10" fill="#555555" text-anchor="middle" letter-spacing="2">PORTRAIT // 01 · MONOCHROME</text>
+  </g>
+
+  <!-- High-fashion Corner Markers -->
+  <path d="M 40 70 L 40 40 L 70 40" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+  <path d="M 760 70 L 760 40 L 730 40" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+  <path d="M 40 930 L 40 960 L 70 960" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+  <path d="M 760 930 L 760 960 L 730 960" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.5"/>
+
+  <!-- Coordinates & Spec text -->
+  <text x="50" y="945" font-family="'PP Neue Montreal Mono', monospace" font-size="10" fill="#777777" letter-spacing="1">STUDIO SPEC // REF 2026</text>
+  <text x="750" y="945" font-family="'PP Neue Montreal Mono', monospace" font-size="10" fill="#777777" text-anchor="end" letter-spacing="1">N 09°58′ / E 76°17′</text>
+</svg>

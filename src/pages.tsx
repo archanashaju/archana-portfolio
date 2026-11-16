@@ -2,43 +2,46 @@ import { useState } from "react";
 import { projects } from "./projects";
 
 /* ==========================================================================
-   ABOUT PAGE — ARCHANA · UI/UX DESIGNER
+   ABOUT PAGE — CLONE DESIGN FROM 3 EDITORIAL REFERENCE IMAGES
+   Ref 1: Mael Voss "The person behind the work."
+   Ref 2: Velisse "Why with me?" & "My Core Capabilities" & Dark Banner CTA
+   Ref 3: "Design Process" (01 to 06 numbered stages with floating accent cards)
    ========================================================================== */
 
 const designPrinciples = [
   {
-    num: "01",
-    title: "Clarity over complexity",
+    num: "/01",
+    title: "Creative Clarity",
     description:
-      "I believe interfaces should communicate clearly. Every element should have a purpose and help users accomplish their goals.",
+      "I turn complex ideas into clean, thoughtful interfaces that communicate clearly and effectively. Every element serves a purpose and helps users accomplish their goals without friction.",
   },
   {
-    num: "02",
-    title: "User comes first",
+    num: "/02",
+    title: "Reliable Collaboration",
     description:
-      "Understanding user behavior, expectations, and pain points helps me create experiences that feel natural and intuitive.",
+      "A smooth, transparent process is just as important as the final design. I prioritize clear, timely communication at every stage of research, ideation, and handoff.",
   },
   {
-    num: "03",
-    title: "Function meets aesthetics",
+    num: "/03",
+    title: "User-Focused Design",
     description:
-      "A beautiful interface should also be functional. I focus on balancing visual consistency with usability.",
+      "I approach every project with deep empathy, understanding user behaviors, expectations, and pain points to craft intuitive experiences that feel natural.",
   },
   {
-    num: "04",
-    title: "Details make the difference",
+    num: "/04",
+    title: "Quality Over Everything",
     description:
-      "From spacing and typography to interactions and feedback, small details contribute to a better overall experience.",
+      "From spacing and typography to micro-interactions and tactile feedback, small details contribute to a lasting, elevated impression.",
   },
 ];
 
 const designProcessStages = [
   {
     num: "01",
-    tag: "Stage 01 · Discovery",
+    tag: "1 week",
     title: "Discover & Understand",
     description:
-      "I start by understanding the project, its objectives, target audience, and business requirements. I explore the problem space and identify what needs to be solved.",
+      "I start by understanding the project, its core objectives, target audience, and business requirements. I explore the problem space, analyze competitors, and identify exactly what needs to be solved.",
     activities: [
       "Project understanding",
       "Requirement gathering",
@@ -49,25 +52,25 @@ const designProcessStages = [
   },
   {
     num: "02",
-    tag: "Stage 02 · Definition",
+    tag: "1 week",
     title: "Research & Define",
     description:
-      "I explore user expectations, identify pain points, and organize the findings to establish a clear design direction.",
+      "I explore user expectations, identify pain points, and organize the findings to establish a clear design direction and actionable user personas.",
     activities: [
       "User research",
       "User behavior analysis",
       "Competitor research",
-      "User personas when relevant",
+      "User personas",
       "Problem definition",
       "User journey mapping",
     ],
   },
   {
     num: "03",
-    tag: "Stage 03 · Structure",
+    tag: "1 week",
     title: "Information Architecture",
     description:
-      "I organize content and functionality into a logical structure so users can navigate the product naturally.",
+      "I organize content and functionality into a logical, hierarchical structure so users can navigate the digital product naturally and effortlessly.",
     activities: [
       "Information architecture",
       "User flows",
@@ -78,10 +81,10 @@ const designProcessStages = [
   },
   {
     num: "04",
-    tag: "Stage 04 · Exploration",
+    tag: "1 week",
     title: "Wireframing & Ideation",
     description:
-      "I translate ideas into low-fidelity layouts and explore different ways to solve the identified problems before moving into visual design.",
+      "I translate conceptual ideas into low-fidelity layouts and explore different ways to solve identified problems before moving into high-fidelity visual design.",
     activities: [
       "Sketching",
       "Low-fidelity wireframes",
@@ -92,10 +95,10 @@ const designProcessStages = [
   },
   {
     num: "05",
-    tag: "Stage 05 · Craft",
+    tag: "2 weeks",
     title: "UI Design & Prototyping",
     description:
-      "I transform wireframes into polished interfaces while maintaining visual consistency, usability, and the product's identity.",
+      "I transform validated wireframes into polished interfaces while establishing visual consistency, design systems, and responsive interactive prototypes.",
     activities: [
       "High-fidelity UI design",
       "Typography & color systems",
@@ -107,10 +110,10 @@ const designProcessStages = [
   },
   {
     num: "06",
-    tag: "Stage 06 · Delivery",
+    tag: "1 week",
     title: "Testing & Refinement",
     description:
-      "I review the experience, collect feedback, identify usability issues, and refine the design before developer handoff.",
+      "I review the experience, collect stakeholder and user feedback, identify usability issues, and refine the design specifications before developer handoff.",
     activities: [
       "Usability review",
       "Design iterations",
@@ -122,43 +125,13 @@ const designProcessStages = [
   },
 ];
 
-const capabilities = [
-  {
-    index: "01",
-    title: "Web Design",
-    description:
-      "Creating responsive websites with intuitive navigation, clear content hierarchy, and engaging visual experiences.",
-  },
-  {
-    index: "02",
-    title: "Mobile App Design",
-    description:
-      "Designing user-friendly mobile experiences with thoughtful interactions and simple navigation.",
-  },
-  {
-    index: "03",
-    title: "SaaS & Dashboard Design",
-    description:
-      "Building structured, data-driven interfaces for complex platforms, CRM systems, and admin dashboards.",
-  },
-  {
-    index: "04",
-    title: "Prototyping & Interaction Design",
-    description:
-      "Bringing concepts to life through interactive prototypes, transitions, and meaningful micro-interactions.",
-  },
-  {
-    index: "05",
-    title: "Design Systems",
-    description:
-      "Creating reusable components, consistent design patterns, and scalable UI foundations.",
-  },
-  {
-    index: "06",
-    title: "UX Problem Solving",
-    description:
-      "Identifying usability challenges and translating user requirements into practical design solutions.",
-  },
+const bigCapabilities = [
+  "UI/UX DESIGN",
+  "SAAS & DASHBOARD PLATFORMS",
+  "MOBILE APP EXPERIENCES",
+  "DESIGN SYSTEMS & TOKENS",
+  "INTERACTIVE PROTOTYPING",
+  "UX PROBLEM SOLVING",
 ];
 
 const toolsList = [
@@ -185,18 +158,18 @@ const designSkills = [
 
 const journeyMilestones = [
   {
-    period: "Current Practice",
-    role: "UI/UX Designer",
-    focus: "Web, Mobile & SaaS Product Design",
+    period: "Present Practice",
+    role: "Lead UI/UX Designer",
+    focus: "Web, Mobile & SaaS Product Ecosystems",
     summary:
-      "Designing end-to-end digital experiences that balance user needs with functional clarity. Leading design systems, responsive architectures, and high-fidelity interaction prototypes for modern platforms.",
+      "Designing end-to-end user experiences that balance user needs with functional clarity. Leading design systems, responsive architectures, and high-fidelity interaction prototypes for modern platforms.",
   },
   {
     period: "Product Design",
     role: "Digital Systems & Interfaces",
     focus: "Cross-functional Collaboration",
     summary:
-      "Crafting multi-platform experiences including staffing ecosystems, Web3 platforms, and interactive client products. Partnering closely with developers, founders, and stakeholders to translate complex ideas into polished realities.",
+      "Crafting multi-platform experiences including staffing platforms (Flexshft), Web3 platform interfaces (Hotcoin), and brand systems (Tiny Bits). Partnering closely with frontend engineers, product managers, and founders.",
   },
   {
     period: "Methodology",
@@ -219,39 +192,83 @@ export function AboutPage({
 }: {
   onNavigate?: (route: string) => void;
 } = {}) {
-  const [activeProcessStage, setActiveProcessStage] = useState<number | null>(null);
+  const [activeStage, setActiveStage] = useState<number | null>(null);
 
   return (
-    <main className="page-scroll about-page">
-      {/* SECTION 01 — INTRODUCTION / ABOUT HERO */}
-      <section className="about-hero page-container" aria-labelledby="about-hero-title">
-        <div className="about-hero-top">
-          <div className="hero-kicker-pill">
-            <span className="live-dot" aria-hidden="true" />
-            <span>ARCHANA · UI/UX DESIGNER</span>
+    <main className="page-scroll about-page editorial-clone-page">
+      {/* ====================================================================
+          CHAPTER 01: THE PERSON BEHIND THE WORK (Clone of Image 1)
+          ==================================================================== */}
+      <section className="clone-hero-section page-container" aria-labelledby="clone-hero-title">
+        {/* Top Header Bar */}
+        <div className="clone-hero-header">
+          <div className="clone-hero-left">
+            <span className="clone-kicker">ABOUT</span>
+            <h1 id="clone-hero-title" className="clone-hero-title">
+              The person
+              <br />
+              behind the work.
+            </h1>
           </div>
-          <div className="hero-status-pill">
-            <span>AVAILABLE FOR PRODUCT DESIGN & COLLABORATIONS</span>
+          <div className="clone-hero-right">
+            <p className="clone-hero-statement">
+              Designing digital experiences that feel intuitive, meaningful, and effortless. Hundreds
+              of decisions per project. One consistent belief — that design done right changes how
+              people feel about a digital product before they say a word.
+            </p>
           </div>
         </div>
 
-        <div className="about-hero-grid">
-          <div className="about-hero-main">
-            <h1 id="about-hero-title" className="about-hero-heading">
-              Designing digital experiences that feel intuitive, meaningful, and effortless.
-            </h1>
-            <div className="about-hero-intro">
+        {/* Clean Hairline Divider */}
+        <div className="clone-divider-line" />
+
+        {/* 2-Column Split: Monochrome Portrait Card + Narrative */}
+        <div className="clone-hero-split">
+          <div className="clone-portrait-column">
+            <div className="clone-portrait-frame">
+              <img
+                src="/portrait.svg"
+                alt="Archana - UI/UX Designer"
+                className="clone-portrait-img"
+              />
+            </div>
+            <div className="clone-portrait-captions">
+              <span className="portrait-caption-tag">(ARCHANA SHAJU)</span>
+              <span className="portrait-caption-tag">(UI/UX DESIGNER · REMOTE)</span>
+            </div>
+          </div>
+
+          <div className="clone-narrative-column">
+            <h2 className="clone-lead-headline">
+              She is an independent UI/UX designer who believes the best products are built on
+              conviction and empathy — not trend.
+            </h2>
+
+            <div className="clone-narrative-paragraphs">
               <p>
                 I'm Archana, a UI/UX Designer passionate about creating thoughtful digital
                 experiences that balance user needs, functionality, and visual clarity.
               </p>
               <p>
+                For years I have worked at the intersection of user research, digital systems, and
+                interface architecture — helping founders and product teams define not just how
+                their platforms look, but how they feel, navigate, and perform in real-world workflows.
+              </p>
+              <p>
+                I started out wanting to make things look beautiful. Somewhere along the way I
+                realised that wasn't enough — that the most powerful design isn't the kind that
+                impresses other designers, it's the kind that makes complex tasks feel effortless for
+                everyday users.
+              </p>
+              <p>
                 I enjoy turning complex ideas into simple, intuitive interfaces. From early-stage
-                research and wireframing to high-fidelity designs and interactive prototypes, I focus
-                on creating experiences that are not just visually appealing but genuinely useful.
+                wireframing and user flows to scalable design systems and high-fidelity interactive
+                prototypes, I focus on creating experiences that are not just visually appealing but
+                genuinely useful.
               </p>
             </div>
-            <div className="about-hero-actions">
+
+            <div className="clone-hero-cta-row">
               <button
                 type="button"
                 className="btn-editorial btn-primary"
@@ -264,205 +281,182 @@ export function AboutPage({
                 className="btn-editorial btn-secondary"
                 onClick={() => onNavigate?.("works")}
               >
-                View Works <span>↗</span>
+                View Selected Work <span>↗</span>
               </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <aside className="about-hero-portrait-card">
-            <div className="portrait-card-header">
-              <span className="portrait-meta-mono">ARCHANA SHAJU</span>
-              <span className="portrait-meta-tag">UI/UX</span>
-            </div>
-            <div className="portrait-frame">
-              <div className="portrait-monogram-art">
-                <div className="monogram-pill-wrap">
-                  <span className="mono-letter">A</span>
-                  <span className="mono-letter">S</span>
-                </div>
-                <div className="monogram-grid-accent" />
-              </div>
-            </div>
-            <div className="portrait-card-footer">
-              <div className="portrait-field">
-                <span className="label">DISCIPLINE</span>
-                <span className="value">UI/UX & Product Design</span>
-              </div>
-              <div className="portrait-field">
-                <span className="label">APPROACH</span>
-                <span className="value">Human-Centered · Minimal</span>
-              </div>
-              <div className="portrait-field">
-                <span className="label">LOCATION</span>
-                <span className="value">Remote · Worldwide</span>
+      {/* ====================================================================
+          CHAPTER 02: DESIGN PROCESS (Clone of Image 3)
+          ==================================================================== */}
+      <section className="clone-process-section page-container" aria-labelledby="clone-process-title">
+        {/* Top Kicker Bar */}
+        <div className="clone-top-indicator-bar">
+          <span className="indicator-left">| 02 |</span>
+          <span className="indicator-right">| UX DESIGN METHODOLOGY |</span>
+        </div>
+
+        <div className="clone-divider-line" />
+
+        <div className="clone-process-layout">
+          {/* Left Column (Sticky Display Title & Architectural Card) */}
+          <aside className="clone-process-left">
+            <h2 id="clone-process-title" className="clone-process-title">
+              Design
+              <br />
+              Process.
+            </h2>
+            <p className="clone-process-blurb">
+              Every project is different, but my approach follows a thoughtful, six-stage methodology
+              that turns ideas into meaningful digital experiences.
+            </p>
+
+            {/* Architectural Accent Card (as in Image 3) */}
+            <div className="clone-process-accent-card">
+              <img
+                src="/projects/clay.jpg"
+                alt="Architectural design visual"
+                className="accent-card-img"
+              />
+              <div className="accent-card-label">
+                <span>SYSTEM ARCHITECTURE // REF 01</span>
               </div>
             </div>
           </aside>
-        </div>
-      </section>
 
-      {/* SECTION 02 — A LITTLE ABOUT ME */}
-      <section className="about-section page-container" aria-labelledby="section-about-me-title">
-        <div className="section-head-editorial">
-          <span className="section-kicker">02 // BACKGROUND</span>
-          <h2 id="section-about-me-title" className="section-title-editorial">
-            More than just pixels and screens.
-          </h2>
-        </div>
+          {/* Right Column (Stacked Process Stages with Numbering & Duration Pills) */}
+          <div className="clone-process-stages-col" role="list">
+            {designProcessStages.map((stage, idx) => {
+              const isActive = activeStage === idx;
+              return (
+                <article
+                  className={`clone-process-row ${isActive ? "is-active" : ""}`}
+                  key={stage.num}
+                  role="listitem"
+                  onMouseEnter={() => setActiveStage(idx)}
+                  onMouseLeave={() => setActiveStage(null)}
+                >
+                  <div className="stage-num-col">{stage.num}</div>
 
-        <div className="editorial-columns-grid">
-          <div className="editorial-statement">
-            <p className="lead-statement">
-              "Good design is not simply about making something look beautiful; it's about making
-              things easier to understand, navigate, and use."
-            </p>
-            <div className="statement-meta">
-              <span>DESIGN PHILOSOPHY</span>
-              <span>// PERSPECTIVE</span>
+                  <div className="stage-body-col">
+                    <div className="stage-title-row">
+                      <h3 className="stage-title">{stage.title}</h3>
+                      <span className="stage-pill-tag">{stage.tag}</span>
+                    </div>
+
+                    <p className="stage-desc">{stage.description}</p>
+
+                    <div className="stage-activities-row">
+                      <span className="stage-act-label">KEY ACTIVITIES:</span>
+                      <ul className="stage-act-list">
+                        {stage.activities.map((act) => (
+                          <li key={act} className="stage-act-item">
+                            {act}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+
+            {/* Secondary Floating Living Room Accent Image (as in Image 3 bottom right) */}
+            <div className="clone-process-bottom-accent">
+              <img
+                src="/projects/1820.jpg"
+                alt="Studio interior and interface environment"
+                className="bottom-accent-img"
+              />
             </div>
           </div>
-
-          <div className="editorial-narrative">
-            <p>
-              I'm a UI/UX Designer who enjoys understanding how people interact with digital products
-              and finding ways to make those interactions better.
-            </p>
-            <p>
-              My approach combines curiosity, problem-solving, and attention to detail. I believe good
-              design is not simply about making something look beautiful; it's about making things
-              easier to understand, navigate, and use.
-            </p>
-            <p>
-              I enjoy working on different kinds of digital experiences, including websites, mobile
-              applications, SaaS platforms, and complex dashboards.
-            </p>
-            <p>
-              I'm always exploring new ideas, improving my design thinking, and learning how technology
-              and design can work together to create better products.
-            </p>
-          </div>
         </div>
       </section>
 
-      {/* SECTION 03 — MY DESIGN PHILOSOPHY */}
-      <section className="about-section page-container" aria-labelledby="section-philosophy-title">
-        <div className="section-head-editorial">
-          <span className="section-kicker">03 // PHILOSOPHY</span>
-          <h2 id="section-philosophy-title" className="section-title-editorial">
-            How I think about design.
-          </h2>
+      {/* ====================================================================
+          CHAPTER 03: WHY WITH ME? & CORE CAPABILITIES (Clone of Image 2)
+          ==================================================================== */}
+      <section className="clone-value-section page-container" aria-labelledby="clone-value-title">
+        {/* Top Kicker & Two-Column Header */}
+        <div className="clone-value-header">
+          <div className="value-header-left">
+            <span className="bullet-kicker">• Value</span>
+            <h2 id="clone-value-title" className="clone-value-title">
+              Why with me?
+            </h2>
+          </div>
+          <div className="value-header-right">
+            <p className="value-subnote">
+              More than just visuals — here's what I bring to every collaboration.
+            </p>
+          </div>
         </div>
 
-        <div className="philosophy-grid">
+        {/* 4 Value Cards Grid */}
+        <div className="clone-value-grid">
           {designPrinciples.map((item) => (
-            <article className="philosophy-card" key={item.num}>
-              <div className="philosophy-num">{item.num}</div>
-              <h3 className="philosophy-title">{item.title}</h3>
-              <p className="philosophy-desc">{item.description}</p>
-            </article>
+            <div className="clone-value-card" key={item.num}>
+              <div className="value-card-num">{item.num}</div>
+              <h3 className="value-card-title">{item.title}</h3>
+              <p className="value-card-desc">{item.description}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* SECTION 04 — MY UI/UX DESIGN PROCESS */}
-      <section className="about-section page-container" aria-labelledby="section-process-title">
-        <div className="section-head-editorial">
-          <span className="section-kicker">04 // PROCESS & METHODOLOGY</span>
-          <h2 id="section-process-title" className="section-title-editorial">
-            From understanding the problem to crafting the experience.
+      {/* Core Capabilities Typographic Display (Image 2 right panel clone) */}
+      <section className="clone-capabilities-section page-container" aria-labelledby="clone-cap-title">
+        <div className="capabilities-editorial-head">
+          <span className="bullet-kicker">• Expertise</span>
+          <h2 id="clone-cap-title" className="capabilities-editorial-title">
+            My Core Capabilities
           </h2>
-          <p className="section-subtitle-editorial">
-            Every project is different, but my approach follows a thoughtful process that helps turn
-            ideas into meaningful digital experiences.
+          <p className="capabilities-editorial-sub">
+            Here's what I've mastered over the years — and continue to evolve.
           </p>
         </div>
 
-        <div className="process-timeline" role="list">
-          {designProcessStages.map((stage, idx) => {
-            const isExpanded = activeProcessStage === idx;
-            return (
-              <div
-                className={`process-stage-item ${isExpanded ? "is-expanded" : ""}`}
-                key={stage.num}
-                role="listitem"
-                onMouseEnter={() => setActiveProcessStage(idx)}
-                onMouseLeave={() => setActiveProcessStage(null)}
-              >
-                <div className="process-stage-num">{stage.num}</div>
-                <div className="process-stage-content">
-                  <div className="process-stage-top">
-                    <h3 className="process-stage-title">{stage.title}</h3>
-                    <span className="process-stage-tag">{stage.tag}</span>
-                  </div>
-                  <p className="process-stage-desc">{stage.description}</p>
-                  <div className="process-activities-wrap">
-                    <span className="activities-label">Key Activities:</span>
-                    <ul className="process-activities-pills">
-                      {stage.activities.map((act) => (
-                        <li key={act} className="activity-pill">
-                          {act}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* SECTION 05 — WHAT I WORK ON */}
-      <section className="about-section page-container" aria-labelledby="section-capabilities-title">
-        <div className="section-head-editorial">
-          <span className="section-kicker">05 // CORE CAPABILITIES</span>
-          <h2 id="section-capabilities-title" className="section-title-editorial">
-            Designing across digital experiences.
-          </h2>
-        </div>
-
-        <div className="capabilities-grid">
-          {capabilities.map((item) => (
-            <div className="capability-card" key={item.index}>
-              <div className="capability-top">
-                <span className="capability-num">{item.index}</span>
-                <span className="capability-bracket">//</span>
-              </div>
-              <h3 className="capability-title">{item.title}</h3>
-              <p className="capability-desc">{item.description}</p>
+        {/* Giant Stacked Typography Stack (Velisse clone) */}
+        <div className="clone-big-capabilities-stack" role="list">
+          {bigCapabilities.map((cap) => (
+            <div className="cap-big-row" key={cap} role="listitem">
+              <span className="cap-text">{cap}</span>
+              <span className="cap-hover-arrow">→</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* SECTION 06 — TOOLS & EXPERTISE */}
-      <section className="about-section page-container" aria-labelledby="section-toolkit-title">
-        <div className="section-head-editorial">
-          <span className="section-kicker">06 // CREATIVE TOOLKIT</span>
-          <h2 id="section-toolkit-title" className="section-title-editorial">
-            My creative toolkit.
+      {/* Creative Toolkit Section */}
+      <section className="clone-toolkit-section page-container" aria-labelledby="clone-toolkit-title">
+        <div className="toolkit-editorial-head">
+          <span className="bullet-kicker">• Toolkit</span>
+          <h2 id="clone-toolkit-title" className="toolkit-editorial-title">
+            My Creative Toolkit
           </h2>
         </div>
 
-        <div className="toolkit-layout">
-          <div className="toolkit-block">
-            <h3 className="toolkit-subhead">Design Tools</h3>
-            <div className="tools-pills-row">
+        <div className="clone-toolkit-grid">
+          <div className="toolkit-card-col">
+            <h3 className="toolkit-group-label">DESIGN TOOLS</h3>
+            <div className="toolkit-tools-list">
               {toolsList.map((t) => (
-                <div className="tool-pill" key={t.name}>
-                  <span className="tool-icon-dot" />
-                  <span className="tool-name">{t.name}</span>
+                <div className="toolkit-tool-item" key={t.name}>
+                  <span className="tool-bullet" />
+                  <span className="tool-title">{t.name}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="toolkit-block">
-            <h3 className="toolkit-subhead">Design Capabilities</h3>
-            <div className="skills-tags-cloud">
-              {designSkills.map((skill) => (
-                <span className="skill-tag" key={skill}>
-                  {skill}
+          <div className="toolkit-card-col">
+            <h3 className="toolkit-group-label">DESIGN & RESEARCH CAPABILITIES</h3>
+            <div className="toolkit-skills-tags">
+              {designSkills.map((s) => (
+                <span className="skill-badge" key={s}>
+                  {s}
                 </span>
               ))}
             </div>
@@ -470,39 +464,37 @@ export function AboutPage({
         </div>
       </section>
 
-      {/* SECTION 07 — EXPERIENCE / PROFESSIONAL JOURNEY */}
-      <section className="about-section page-container" aria-labelledby="section-journey-title">
-        <div className="section-head-editorial">
-          <span className="section-kicker">07 // JOURNEY & EXPERIENCE</span>
-          <h2 id="section-journey-title" className="section-title-editorial">
-            My journey in design.
+      {/* Experience Journey (The Expertise Behind Every Detail) */}
+      <section className="clone-journey-section page-container" aria-labelledby="clone-journey-title">
+        <div className="journey-editorial-head">
+          <span className="bullet-kicker">• Experience</span>
+          <h2 id="clone-journey-title" className="journey-editorial-title">
+            The Expertise Behind Every Detail
           </h2>
         </div>
 
-        <div className="journey-timeline">
+        <div className="clone-journey-rows">
           {journeyMilestones.map((m, i) => (
-            <article className="journey-card" key={i}>
-              <div className="journey-meta-col">
-                <span className="journey-period">{m.period}</span>
-                <span className="journey-role">{m.role}</span>
+            <div className="clone-journey-row" key={i}>
+              <div className="journey-meta-cell">
+                <span className="journey-role-name">{m.role}</span>
+                <span className="journey-period-tag">{m.period}</span>
               </div>
-              <div className="journey-desc-col">
-                <h3 className="journey-focus">{m.focus}</h3>
-                <p className="journey-summary">{m.summary}</p>
+              <div className="journey-content-cell">
+                <h3 className="journey-focus-title">{m.focus}</h3>
+                <p className="journey-desc-text">{m.summary}</p>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* SECTION 08 — PERSONAL TOUCH */}
-      <section className="about-section page-container" aria-labelledby="section-personal-title">
-        <div className="personal-touch-box">
-          <span className="section-kicker">08 // PERSPECTIVE</span>
-          <h2 id="section-personal-title" className="personal-touch-title">
-            Always curious. Always creating.
-          </h2>
-          <div className="personal-touch-body">
+      {/* Personal Perspective (Always curious. Always creating.) */}
+      <section className="clone-personal-section page-container">
+        <div className="clone-personal-card">
+          <span className="bullet-kicker">• Perspective</span>
+          <h2 className="personal-headline">Always curious. Always creating.</h2>
+          <div className="personal-paragraphs">
             <p>
               Outside of designing interfaces, I enjoy exploring creative ideas, discovering inspiring
               digital products, and learning new ways to approach everyday problems.
@@ -515,28 +507,29 @@ export function AboutPage({
         </div>
       </section>
 
-      {/* SECTION 09 — FINAL CTA */}
-      <section className="about-cta-section page-container" aria-labelledby="section-cta-title">
-        <div className="about-cta-card">
-          <span className="section-kicker">09 // COLLABORATE</span>
-          <h2 id="section-cta-title" className="about-cta-title">
-            Have an idea? Let's make it happen.
+      {/* ====================================================================
+          CHAPTER 04: DARK BANNER CTA (Clone of Image 2 Bottom)
+          ==================================================================== */}
+      <section className="clone-dark-cta-section page-container" aria-labelledby="clone-cta-title">
+        <div className="clone-dark-cta-card">
+          <h2 id="clone-cta-title" className="dark-cta-title">
+            Let's Design Something Meaningful
           </h2>
-          <p className="about-cta-desc">
-            I'm always open to interesting projects, creative collaborations, and opportunities to
-            build meaningful digital experiences.
+          <p className="dark-cta-desc">
+            Have an idea? I'm always open to interesting projects, creative collaborations, and
+            opportunities to build meaningful digital experiences.
           </p>
-          <div className="about-cta-buttons">
+          <div className="dark-cta-buttons">
             <button
               type="button"
-              className="btn-editorial btn-primary"
+              className="btn-editorial btn-primary light-invert"
               onClick={() => onNavigate?.("contact")}
             >
               Let's Talk <span>→</span>
             </button>
             <button
               type="button"
-              className="btn-editorial btn-secondary"
+              className="btn-editorial btn-secondary dark-outline"
               onClick={() => onNavigate?.("home")}
             >
               View My Work <span>↗</span>

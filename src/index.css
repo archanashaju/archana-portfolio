@@ -796,7 +796,7 @@
 }
 
 /* =========================================================================
-   ABOUT PAGE — ARCHANA · UI/UX DESIGNER
+   ABOUT PAGE — EDITORIAL CLONE DESIGN (Images 1, 2, 3)
    ========================================================================= */
 
 .about-page {
@@ -806,41 +806,6 @@
   background: var(--surface);
   color: var(--ink);
   overflow-x: hidden;
-}
-
-.hero-kicker-pill,
-.hero-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font: 400 10px/1 "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--fill);
-  color: var(--muted);
-}
-
-.live-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
-  animation: pulseDot 2.2s infinite ease-in-out;
-}
-
-@keyframes pulseDot {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.35;
-    transform: scale(0.85);
-  }
 }
 
 .btn-editorial {
@@ -882,322 +847,237 @@
   background: var(--fill);
 }
 
-/* Hero Section */
-.about-hero-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
+/* -------------------------------------------------------------------------
+   CHAPTER 01: THE PERSON BEHIND THE WORK (Image 1 Clone)
+   ------------------------------------------------------------------------- */
+
+.clone-hero-section {
+  padding-top: 24px;
 }
 
-.about-hero-grid {
+.clone-hero-header {
   display: grid;
-  grid-template-columns: 1fr 330px;
+  grid-template-columns: 1.25fr 1fr;
   gap: 48px;
-  margin-top: 40px;
+  align-items: end;
+}
+
+.clone-kicker {
+  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+  display: block;
+}
+
+.clone-hero-title {
+  font-family: "Oracle", sans-serif;
+  font-size: clamp(2.8rem, 6.2vw, 5.2rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.clone-hero-statement {
+  font-size: clamp(1rem, 1.3vw, 1.18rem);
+  line-height: 1.62;
+  color: var(--muted);
+  margin: 0;
+  max-width: 500px;
+  align-self: flex-end;
+}
+
+.clone-divider-line {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  margin: 40px 0 54px;
+}
+
+.clone-hero-split {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 64px;
   align-items: start;
 }
 
-.about-hero-heading {
-  font-family: "Oracle", sans-serif;
-  font-size: clamp(2.1rem, 4.4vw, 3.6rem);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  color: var(--ink);
-  margin: 0;
-  max-width: 820px;
-}
-
-.about-hero-intro {
-  font-size: clamp(1.02rem, 1.25vw, 1.15rem);
-  line-height: 1.7;
-  color: var(--muted);
-  margin: 28px 0 36px;
-  max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.about-hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.about-hero-portrait-card {
-  border: 1px solid var(--line);
-  background: var(--fill);
-  border-radius: 12px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
-}
-
-.portrait-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font: 400 10px "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
-.portrait-meta-tag {
-  padding: 2px 7px;
+.clone-portrait-frame {
+  aspect-ratio: 4 / 5;
   border-radius: 4px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  color: var(--ink);
-}
-
-.portrait-frame {
-  aspect-ratio: 1 / 1;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.06) 0%, transparent 72%), var(--surface);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
   overflow: hidden;
+  background: #131211;
+  position: relative;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
 }
 
-.portrait-monogram-art {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.clone-portrait-img {
   width: 100%;
   height: 100%;
-  position: relative;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(108%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.monogram-pill-wrap {
-  display: flex;
-  gap: 10px;
-  z-index: 2;
+.clone-portrait-frame:hover .clone-portrait-img {
+  transform: scale(1.02);
 }
 
-.mono-letter {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--fill);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Oracle", sans-serif;
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--ink);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.portrait-frame:hover .mono-letter:first-child {
-  transform: translateX(-4px) scale(1.05);
-}
-
-.portrait-frame:hover .mono-letter:last-child {
-  transform: translateX(4px) scale(1.05);
-}
-
-.portrait-card-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
-}
-
-.portrait-field {
+.clone-portrait-captions {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  font-size: 11px;
-}
-
-.portrait-field .label {
-  font: 400 9px "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.08em;
+  align-items: center;
+  margin-top: 14px;
+  font: 400 10px "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.06em;
   color: var(--muted);
 }
 
-.portrait-field .value {
-  font: 500 11px "PP Neue Montreal Mono", monospace;
-  color: var(--ink);
-}
-
-/* Common Section Layout */
-.about-section {
-  margin-top: clamp(80px, 9vw, 120px);
-}
-
-.section-head-editorial {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 22px;
-  margin-bottom: 44px;
-}
-
-.section-kicker {
-  display: block;
-  font: 400 10px/1.2 "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.12em;
-  color: var(--muted);
+.portrait-caption-tag {
   text-transform: uppercase;
-  margin-bottom: 12px;
 }
 
-.section-title-editorial {
+.clone-lead-headline {
   font-family: "Oracle", sans-serif;
-  font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+  font-size: clamp(1.6rem, 2.7vw, 2.4rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
   color: var(--ink);
-  margin: 0;
+  margin: 0 0 28px;
 }
 
-.section-subtitle-editorial {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--muted);
-  margin: 14px 0 0;
-  max-width: 720px;
-}
-
-/* Section 02 Editorial Columns */
-.editorial-columns-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 56px;
-  align-items: start;
-}
-
-.editorial-statement .lead-statement {
-  font-family: "Oracle", sans-serif;
-  font-size: clamp(1.35rem, 2.1vw, 1.95rem);
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin: 0;
-}
-
-.statement-meta {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
-  font: 400 9px "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-
-.editorial-narrative {
+.clone-narrative-paragraphs {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  font-size: 1.02rem;
-  line-height: 1.7;
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+  line-height: 1.72;
   color: var(--muted);
 }
 
-/* Section 03 Philosophy Grid */
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+.clone-hero-cta-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 36px;
+  flex-wrap: wrap;
 }
 
-.philosophy-card {
+/* -------------------------------------------------------------------------
+   CHAPTER 02: DESIGN PROCESS (Image 3 Clone)
+   ------------------------------------------------------------------------- */
+
+.clone-process-section {
+  margin-top: clamp(90px, 11vw, 150px);
+}
+
+.clone-top-indicator-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 400 11px "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding-bottom: 14px;
+}
+
+.clone-process-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.clone-process-title {
+  font-family: "Oracle", sans-serif;
+  font-size: clamp(3rem, 5.5vw, 4.8rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin: 0 0 20px;
+}
+
+.clone-process-blurb {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 36px;
+}
+
+.clone-process-accent-card {
+  position: sticky;
+  top: 110px;
+  border-radius: 14px;
+  overflow: hidden;
   border: 1px solid var(--line);
   background: var(--fill);
-  border-radius: 10px;
-  padding: 34px 28px;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
 }
 
-.philosophy-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+.accent-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
 }
 
-.philosophy-num {
-  font-family: "PP Neue Montreal Mono", monospace;
-  font-size: 13px;
+.accent-card-label {
+  padding: 10px 14px;
+  font: 400 9px "PP Neue Montreal Mono", monospace;
   color: var(--muted);
-  letter-spacing: 0.08em;
-  margin-bottom: 22px;
+  letter-spacing: 0.06em;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
 }
 
-.philosophy-title {
-  font-family: "Oracle", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin: 0 0 12px;
-}
-
-.philosophy-desc {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* Section 04 Process Timeline */
-.process-timeline {
+.clone-process-stages-col {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--line);
+  position: relative;
 }
 
-.process-stage-item {
+.clone-process-row {
   display: grid;
   grid-template-columns: 80px 1fr;
-  gap: 32px;
+  gap: 28px;
   padding: 36px 0;
   border-bottom: 1px solid var(--line);
   transition: all 0.22s ease-out;
 }
 
-.process-stage-item:hover,
-.process-stage-item.is-expanded {
+.clone-process-row.is-active,
+.clone-process-row:hover {
   padding-left: 18px;
   padding-right: 18px;
   background: var(--fill);
   border-radius: 8px;
 }
 
-.process-stage-num {
+.stage-num-col {
   font-family: "PP Neue Montreal Mono", monospace;
-  font-size: clamp(2rem, 3.2vw, 2.7rem);
-  font-weight: 400;
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 300;
+  line-height: 0.9;
   color: var(--muted);
   opacity: 0.45;
-  line-height: 1;
-  transition: opacity 0.2s, color 0.2s;
+  transition: all 0.2s;
 }
 
-.process-stage-item:hover .process-stage-num,
-.process-stage-item.is-expanded .process-stage-num {
+.clone-process-row:hover .stage-num-col,
+.clone-process-row.is-active .stage-num-col {
   opacity: 1;
   color: var(--ink);
+  transform: translateX(2px);
 }
 
-.process-stage-top {
+.stage-title-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -1206,48 +1086,46 @@
   margin-bottom: 12px;
 }
 
-.process-stage-title {
+.stage-title {
   font-family: "Oracle", sans-serif;
-  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--ink);
   margin: 0;
 }
 
-.process-stage-tag {
+.stage-pill-tag {
   font: 400 10px "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--muted);
-  background: var(--fill);
-  padding: 4px 10px;
+  background: var(--surface);
+  padding: 5px 13px;
   border-radius: 999px;
   border: 1px solid var(--line);
 }
 
-.process-stage-desc {
+.stage-desc {
   font-size: 0.98rem;
   line-height: 1.65;
   color: var(--muted);
-  max-width: 780px;
   margin: 0 0 18px;
+  max-width: 660px;
 }
 
-.process-activities-wrap {
+.stage-activities-row {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
-.activities-label {
+.stage-act-label {
   font: 400 9px "PP Neue Montreal Mono", monospace;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--muted);
 }
 
-.process-activities-pills {
+.stage-act-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -1256,91 +1134,245 @@
   margin: 0;
 }
 
-.activity-pill {
+.stage-act-item {
   font: 400 10px "PP Neue Montreal Mono", monospace;
-  padding: 5px 12px;
+  padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
-  letter-spacing: 0.02em;
 }
 
-/* Section 05 Capabilities Grid */
-.capabilities-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.clone-process-bottom-accent {
+  margin-top: 36px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bottom-accent-img {
+  width: 240px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------------------------------------------
+   CHAPTER 03: WHY WITH ME? & CORE CAPABILITIES (Image 2 Clone)
+   ------------------------------------------------------------------------- */
+
+.clone-value-section {
+  margin-top: clamp(90px, 11vw, 150px);
+}
+
+.clone-value-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
   gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+  margin-bottom: 40px;
 }
 
-.capability-card {
+.bullet-kicker {
+  font: 400 11px/1 "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.clone-value-title {
+  font-family: "Oracle", sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.value-subnote {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 420px;
+  margin: 0;
+}
+
+.clone-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.clone-value-card {
   border: 1px solid var(--line);
   background: var(--fill);
   border-radius: 10px;
-  padding: 30px 24px;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.25s, border-color 0.25s;
+  padding: 34px 30px;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.capability-card:hover {
+.clone-value-card:hover {
   transform: translateY(-3px);
   border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
 }
 
-.capability-top {
-  display: flex;
-  justify-content: space-between;
-  font: 400 11px "PP Neue Montreal Mono", monospace;
+.value-card-num {
+  font: 400 12px "PP Neue Montreal Mono", monospace;
   color: var(--muted);
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
-.capability-title {
+.value-card-title {
   font-family: "Oracle", sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   color: var(--ink);
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
-.capability-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
+.value-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
   color: var(--muted);
   margin: 0;
 }
 
-/* Section 06 Toolkit */
-.toolkit-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 36px;
+/* Big Stacked Capabilities Display (Velisse Clone) */
+.clone-capabilities-section {
+  margin-top: clamp(80px, 10vw, 130px);
 }
 
-.toolkit-block {
+.capabilities-editorial-head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+  margin-bottom: 36px;
+}
+
+.capabilities-editorial-title {
+  font-family: "Oracle", sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+
+.capabilities-editorial-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.clone-big-capabilities-stack {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+
+.cap-big-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 12px;
+  border-bottom: 1px solid var(--line);
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+.cap-big-row:hover {
+  padding-left: 24px;
+  padding-right: 24px;
+  background: var(--fill);
+}
+
+.cap-text {
+  font-family: "Oracle", sans-serif;
+  font-size: clamp(1.8rem, 4.2vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.1;
+  transition: transform 0.2s ease;
+}
+
+.cap-big-row:hover .cap-text {
+  transform: translateX(4px);
+}
+
+.cap-hover-arrow {
+  font-family: "PP Neue Montreal Mono", monospace;
+  font-size: 24px;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.2s ease;
+}
+
+.cap-big-row:hover .cap-hover-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--ink);
+}
+
+/* Toolkit, Journey & Perspective */
+.clone-toolkit-section,
+.clone-journey-section,
+.clone-personal-section {
+  margin-top: clamp(80px, 9vw, 120px);
+}
+
+.toolkit-editorial-head,
+.journey-editorial-head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+  margin-bottom: 36px;
+}
+
+.toolkit-editorial-title,
+.journey-editorial-title {
+  font-family: "Oracle", sans-serif;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.clone-toolkit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 32px;
+}
+
+.toolkit-card-col {
   border: 1px solid var(--line);
   background: var(--fill);
   border-radius: 10px;
-  padding: 32px 28px;
+  padding: 32px;
 }
 
-.toolkit-subhead {
-  font-family: "Oracle", sans-serif;
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--ink);
-  margin: 0 0 22px;
+.toolkit-group-label {
+  font: 400 10px "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0 0 20px;
 }
 
-.tools-pills-row {
+.toolkit-tools-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-.tool-pill {
+.toolkit-tool-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1352,66 +1384,65 @@
   color: var(--ink);
 }
 
-.tool-icon-dot {
+.tool-bullet {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: #10b981;
 }
 
-.skills-tags-cloud {
+.toolkit-skills-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.skill-tag {
+.skill-badge {
   font: 400 11px "PP Neue Montreal Mono", monospace;
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
-  letter-spacing: 0.02em;
-  transition: all 0.2s;
+  transition: border-color 0.2s;
 }
 
-.skill-tag:hover {
+.skill-badge:hover {
   border-color: var(--ink);
 }
 
-/* Section 07 Journey */
-.journey-timeline {
+.clone-journey-rows {
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--line);
 }
 
-.journey-card {
+.clone-journey-row {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 32px;
-  padding: 34px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--line);
 }
 
-.journey-period {
+.journey-role-name {
   display: block;
-  font: 400 10px "PP Neue Montreal Mono", monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-family: "Oracle", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
   margin-bottom: 6px;
 }
 
-.journey-role {
-  font-family: "Oracle", sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--ink);
+.journey-period-tag {
+  display: inline-block;
+  font: 400 10px "PP Neue Montreal Mono", monospace;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
 }
 
-.journey-focus {
+.journey-focus-title {
   font-family: "Oracle", sans-serif;
   font-size: 1.15rem;
   font-weight: 500;
@@ -1419,252 +1450,152 @@
   margin: 0 0 8px;
 }
 
-.journey-summary {
-  font-size: 0.94rem;
+.journey-desc-text {
+  font-size: 0.95rem;
   line-height: 1.65;
   color: var(--muted);
   margin: 0;
 }
 
-/* Section 08 Personal Touch */
-.personal-touch-box {
+.clone-personal-card {
   border: 1px solid var(--line);
   background: var(--fill);
   border-radius: 12px;
-  padding: clamp(32px, 5vw, 56px);
+  padding: clamp(36px, 5vw, 56px);
   margin: 0 auto;
   max-width: 900px;
 }
 
-.personal-touch-title {
+.personal-headline {
   font-family: "Oracle", sans-serif;
-  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: 500;
   letter-spacing: -0.025em;
   color: var(--ink);
-  margin: 12px 0 20px;
+  margin: 14px 0 20px;
 }
 
-.personal-touch-body {
+.personal-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--muted);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
 }
 
-/* Section 09 Final CTA */
-.about-cta-section {
-  margin-top: clamp(80px, 9vw, 120px);
+/* -------------------------------------------------------------------------
+   CHAPTER 04: DARK BANNER CTA (Image 2 Bottom Clone)
+   ------------------------------------------------------------------------- */
+
+.clone-dark-cta-section {
+  margin-top: clamp(90px, 11vw, 140px);
+  margin-bottom: 30px;
 }
 
-.about-cta-card {
-  border: 1px solid var(--line);
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%), var(--fill);
-  border-radius: 14px;
-  padding: clamp(40px, 6vw, 70px) clamp(24px, 4vw, 50px);
+.clone-dark-cta-card {
+  background: #090909;
+  color: #f4f4f4;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: clamp(48px, 7vw, 84px) clamp(24px, 5vw, 60px);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+  position: relative;
+  overflow: hidden;
 }
 
-.about-cta-title {
+.dark-cta-title {
   font-family: "Oracle", sans-serif;
-  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-size: clamp(2.2rem, 4.4vw, 3.8rem);
   font-weight: 500;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  margin: 16px 0;
-  max-width: 680px;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0 0 18px;
+  max-width: 720px;
+  line-height: 1.08;
 }
 
-.about-cta-desc {
+.dark-cta-desc {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: var(--muted);
+  color: #a1a1a1;
   max-width: 580px;
-  margin: 0 0 32px;
+  margin: 0 0 36px;
 }
 
-.about-cta-buttons {
+.dark-cta-buttons {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* Lab */
-.lab-page {
-  padding-top: 76px;
-  background: var(--surface);
+.btn-editorial.light-invert {
+  background: #ffffff;
+  color: #090909;
+  border: 1px solid #ffffff;
+  font-weight: 600;
 }
-.lab-intro {
-  padding: 75px 0 90px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 30px;
+
+.btn-editorial.light-invert:hover {
+  background: #eaeaea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
-.lab-intro h1 {
-  grid-column: 2;
-  margin: 0;
-  font-size: clamp(52px, 8vw, 118px);
-  font-weight: 400;
-  line-height: 0.84;
-  letter-spacing: -0.075em;
-}
-.lab-intro > p:last-child {
-  grid-column: 2;
-  width: min(480px, 100%);
-  margin: 20px 0 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.5;
-}
-.lab-catalogue {
-  width: calc(100% - 28px);
-  margin: 0 auto 120px;
-}
-.lab-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 55px 10px;
-}
-.experiment {
-  display: block;
-  min-width: 0;
-  text-decoration: none;
-}
-.experiment-image {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: var(--fill);
-}
-.experiment-image img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.9s cubic-bezier(0.2, 0.75, 0.2, 1);
-}
-.experiment:hover img {
-  transform: scale(1.045);
-}
-.experiment-image > span {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 5px 7px;
-  border-radius: 5px;
-  background: rgba(250, 250, 248, 0.86);
-  color: #1e1e1e;
-  font:
-    400 8px "PP Neue Montreal Mono",
-    monospace;
-  backdrop-filter: blur(8px);
-}
-.experiment-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 12px 2px;
-}
-.experiment-meta h2 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 450;
-}
-.experiment-meta > div {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--muted);
-  font:
-    400 8px "PP Neue Montreal Mono",
-    monospace;
-}
-.experiment-meta b {
-  padding: 3px 5px;
-  border-radius: 4px;
-  background: var(--fill);
-  color: var(--ink);
-  font-weight: 400;
-}
-.lab-list {
-  display: flex;
-  flex-direction: column;
-}
-.lab-list .experiment {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  border-top: 1px solid var(--line);
-}
-.lab-list .experiment-image {
-  aspect-ratio: 4 / 3;
-}
-.lab-list .experiment-meta {
-  align-items: center;
-  padding-inline: 20px;
-}
-.lab-list .experiment-meta h2 {
-  font-size: clamp(24px, 4vw, 58px);
-  letter-spacing: -0.04em;
-}
-.lab-wheel {
-  height: min(660px, calc(100svh - 155px));
-  padding: 45px 34vw;
-  display: flex;
-  align-items: center;
-  gap: 4vw;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-.lab-wheel::-webkit-scrollbar {
-  display: none;
-}
-.lab-wheel .experiment {
-  width: min(37vw, 510px);
-  flex: 0 0 auto;
-  scroll-snap-align: center;
-  transform: rotate(-2deg);
-  transition:
-    transform 0.55s cubic-bezier(0.2, 0.75, 0.2, 1),
-    opacity 0.4s ease;
-}
-.lab-wheel .experiment:nth-child(even) {
-  transform: translateY(7%) rotate(2.5deg);
-}
-.lab-wheel .experiment:hover {
-  transform: translateY(-2%) rotate(0) scale(1.03);
-}
-.lab-switcher {
-  position: fixed;
-  z-index: 15;
-  left: 50%;
-  bottom: 16px;
-  translate: -50%;
-  display: flex;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--chrome);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
-}
-.lab-switcher button {
-  padding: 8px 11px;
-  border: 0;
-  border-radius: 6px;
+
+.btn-editorial.dark-outline {
   background: transparent;
-  font-size: 10px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.lab-switcher button.active {
-  background: var(--fill);
+
+.btn-editorial.dark-outline:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for clone layout */
+@media (max-width: 960px) {
+  .clone-hero-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .clone-hero-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .clone-portrait-frame {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .clone-portrait-captions {
+    max-width: 380px;
+    margin-inline: auto;
+  }
+  .clone-process-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .clone-process-accent-card {
+    position: static;
+    max-width: 360px;
+    margin-bottom: 24px;
+  }
+  .clone-value-grid {
+    grid-template-columns: 1fr;
+  }
+  .clone-toolkit-grid {
+    grid-template-columns: 1fr;
+  }
+  .clone-journey-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
 
 /* =========================================================================
