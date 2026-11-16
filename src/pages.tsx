@@ -348,15 +348,6 @@ export function AboutPage({
                 </article>
               );
             })}
-
-            {/* Secondary Floating Living Room Accent Image (as in Image 3 bottom right) */}
-            <div className="clone-process-bottom-accent">
-              <img
-                src="/projects/1820.jpg"
-                alt="Studio interior and interface environment"
-                className="bottom-accent-img"
-              />
-            </div>
           </div>
         </div>
       </section>

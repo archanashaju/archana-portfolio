@@ -1150,20 +1150,6 @@
   color: var(--ink);
 }
 
-.clone-process-bottom-accent {
-  margin-top: 36px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.bottom-accent-img {
-  width: 240px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
-}
 
 /* -------------------------------------------------------------------------
    CHAPTER 03: WHY WITH ME? & CORE CAPABILITIES (Image 2 Clone)
