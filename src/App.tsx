@@ -598,7 +598,7 @@ export default function App() {
             }}
           >
             <span className="brand-pill brand-c">a</span>
-            <span className="brand-pill brand-o">p</span>
+            <span className="brand-pill brand-o">s</span>
             {route !== "home" && (
               <span className="brand-crumb">
                 ::{" "}
