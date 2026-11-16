@@ -994,6 +994,14 @@
   align-items: start;
 }
 
+.clone-process-left {
+  position: sticky;
+  top: 84px;
+  align-self: start;
+  height: fit-content;
+  z-index: 2;
+}
+
 .clone-process-title {
   font-family: "Oracle", sans-serif;
   font-size: clamp(3rem, 5.5vw, 4.8rem);
@@ -1008,12 +1016,11 @@
   font-size: 0.98rem;
   line-height: 1.6;
   color: var(--muted);
-  margin: 0 0 36px;
+  margin: 0 0 24px;
 }
 
 .clone-process-accent-card {
-  position: sticky;
-  top: 110px;
+  position: relative;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -1553,6 +1560,9 @@
   .clone-process-layout {
     grid-template-columns: 1fr;
     gap: 36px;
+  }
+  .clone-process-left {
+    position: static;
   }
   .clone-process-accent-card {
     position: static;
