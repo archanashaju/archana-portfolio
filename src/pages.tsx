@@ -212,9 +212,8 @@ export function AboutPage({
           </div>
           <div className="clone-hero-right">
             <p className="clone-hero-statement">
-              Designing digital experiences that feel intuitive, meaningful, and effortless. Hundreds
-              of decisions per project. One consistent belief — that design done right changes how
-              people feel about a digital product before they say a word.
+              3+ years of practice. Hundreds of decisions per project. One consistent belief — that
+              design done right changes how people feel about a digital product before they say a word.
             </p>
           </div>
         </div>
@@ -246,25 +245,12 @@ export function AboutPage({
 
             <div className="clone-narrative-paragraphs">
               <p>
-                I'm Archana, a UI/UX Designer passionate about creating thoughtful digital
-                experiences that balance user needs, functionality, and visual clarity.
-              </p>
-              <p>
-                For years I have worked at the intersection of user research, digital systems, and
-                interface architecture — helping founders and product teams define not just how
-                their platforms look, but how they feel, navigate, and perform in real-world workflows.
-              </p>
-              <p>
-                I started out wanting to make things look beautiful. Somewhere along the way I
-                realised that wasn't enough — that the most powerful design isn't the kind that
-                impresses other designers, it's the kind that makes complex tasks feel effortless for
-                everyday users.
-              </p>
-              <p>
-                I enjoy turning complex ideas into simple, intuitive interfaces. From early-stage
-                wireframing and user flows to scalable design systems and high-fidelity interactive
-                prototypes, I focus on creating experiences that are not just visually appealing but
-                genuinely useful.
+                I'm Archana, a UI/UX Designer with over 3 years of experience creating thoughtful
+                digital experiences that balance user needs, functionality, and visual clarity. I
+                specialize in turning complex ideas into simple, intuitive interfaces across web,
+                mobile, and SaaS platforms — from early-stage research, wireframing, and scalable
+                design systems to high-fidelity interactive prototypes that are genuinely useful and
+                effortless to navigate.
               </p>
             </div>
 
@@ -414,7 +400,7 @@ export function AboutPage({
             My Core Capabilities
           </h2>
           <p className="capabilities-editorial-sub">
-            Here's what I've mastered over the years — and continue to evolve.
+            3+ years of practice mastering digital product design — and continuing to evolve.
           </p>
         </div>
 
