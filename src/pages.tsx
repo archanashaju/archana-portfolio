@@ -226,7 +226,7 @@ export function AboutPage({
           <div className="clone-portrait-column">
             <div className="clone-portrait-frame">
               <img
-                src="/portrait.svg"
+                src="/archana.jpg"
                 alt="Archana - UI/UX Designer"
                 className="clone-portrait-img"
               />

@@ -918,8 +918,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
-  filter: grayscale(100%) contrast(108%);
+  filter: grayscale(100%) contrast(105%);
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
