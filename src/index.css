@@ -3571,55 +3571,11 @@
   margin: 0;
 }
 
-@media (max-width: 900px) {
-  /* Works / Lab Page Responsive */
-  .lab-page {
-    padding-top: 65px;
-  }
-  .lab-intro {
-    padding: 55px 0 65px;
-    grid-template-columns: 1fr;
-  }
-  .lab-intro h1,
-  .lab-intro > p:last-child {
-    grid-column: 1;
-  }
-  .lab-intro h1 {
-    font-size: clamp(38px, 12vw, 68px);
-  }
-  .lab-grid {
-    grid-template-columns: 1fr;
-    gap: 38px;
-  }
-  .lab-list .experiment {
-    grid-template-columns: 95px 1fr;
-  }
-  .lab-list .experiment-meta {
-    padding-inline: 12px;
-  }
-  .lab-wheel {
-    height: 62vh;
-    padding-inline: 16vw;
-    gap: 9vw;
-  }
-  .lab-wheel .experiment {
-    width: 72vw;
-  }
+/* =========================================================================
+   RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS
+   ========================================================================= */
 
-  /* Contact Page Responsive */
-  .contact-page {
-    padding-top: 68px;
-  }
-  .contact-editorial-layout {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-  .contact-closing-box {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
+@media (max-width: 960px) {
   .cs-editorial-columns {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -3629,6 +3585,7 @@
   }
   .cs-dossier-duo {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
   .cs-mockup-wrapper {
     grid-template-columns: 1fr;
@@ -3638,12 +3595,537 @@
   }
   .cs-chat-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
   .cs-brand-grid-duo {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
   .cs-quote-banner {
     padding: 40px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header & Navigation Mobile */
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-only {
+    display: grid !important;
+  }
+  .header-bar {
+    height: 60px;
+    padding: 10px 14px;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+  }
+  .brand-crumb {
+    font-size: 11px;
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .brand-c,
+  .brand-o {
+    height: 30px;
+  }
+  .brand-c {
+    width: 30px;
+  }
+  .brand-o {
+    width: 42px;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .theme-toggle {
+    height: 34px;
+    border-radius: 8px;
+  }
+  .theme-toggle button {
+    width: 28px;
+    height: 28px;
+  }
+  .icon-button {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+  }
+  .menu-button {
+    width: 34px;
+    height: 34px;
+    display: grid !important;
+    place-content: center;
+    gap: 4px;
+    border: 1px solid var(--line);
+    background: var(--chrome);
+    backdrop-filter: blur(16px);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--ink);
+    padding: 0;
+  }
+  .menu-button span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+  }
+
+  /* Mobile Container & Spacing */
+  .page-container {
+    width: calc(100% - 32px);
+  }
+  .about-page,
+  .contact-page,
+  .lab-page,
+  .flexshft-page {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  /* Homepage 3D Wheel Mobile */
+  .proof-card,
+  .die-card {
+    --y: calc(var(--distance) * 37vw);
+  }
+  .proof-card {
+    top: 30%;
+    left: 50%;
+    width: min(58vw, 260px);
+    transform: translate(calc(-50% + var(--y)), -50%) rotate(calc(var(--distance) * 6deg))
+      rotate(var(--lean)) scale(calc(var(--scale) - var(--focus) * 0.12));
+  }
+  .die-card {
+    top: 72%;
+    right: auto;
+    left: 50%;
+    width: min(28vw, 132px);
+    transform: translate(calc(-50% - var(--y)), -50%) rotate(calc(var(--distance) * -7deg))
+      rotate(var(--lean)) scale(calc(var(--scale) - var(--focus) * 0.12));
+  }
+  .project-center {
+    top: 51.5%;
+    width: 86vw;
+  }
+  .project-center h1 {
+    font-size: clamp(24px, 8vw, 34px);
+    margin-top: 8px;
+  }
+  .chips {
+    margin-top: 10px;
+  }
+  .view-button {
+    margin-top: 15px;
+    padding: 8px 12px 8px 14px;
+  }
+  .turn-hint {
+    bottom: 10px;
+  }
+
+  /* About Page — Hero */
+  .clone-hero-header {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .clone-hero-title {
+    font-size: clamp(2.2rem, 8.5vw, 3.4rem);
+    line-height: 1.04;
+  }
+  .clone-hero-statement {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+  .clone-divider-line {
+    margin: 28px 0 34px;
+  }
+  .clone-hero-split {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .clone-portrait-frame {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .clone-portrait-captions {
+    max-width: 320px;
+    margin-inline: auto;
+    font-size: 9.5px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .clone-lead-headline {
+    font-size: clamp(1.35rem, 5.2vw, 1.85rem);
+    line-height: 1.32;
+    margin-bottom: 20px;
+  }
+  .clone-narrative-paragraphs {
+    font-size: 0.94rem;
+    line-height: 1.65;
+    gap: 14px;
+  }
+  .clone-hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .clone-hero-cta-row .btn-editorial {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* About Page — Process Section */
+  .clone-process-section {
+    margin-top: clamp(60px, 8vw, 90px);
+  }
+  .clone-top-indicator-bar {
+    font-size: 9.5px;
+    padding-bottom: 10px;
+  }
+  .clone-process-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .clone-process-left {
+    position: static;
+  }
+  .clone-process-title {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    line-height: 1.02;
+    margin-bottom: 14px;
+  }
+  .clone-process-blurb {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .clone-process-accent-card {
+    position: static;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .clone-process-row {
+    grid-template-columns: 46px 1fr;
+    gap: 14px;
+    padding: 22px 0;
+  }
+  .clone-process-row.is-active,
+  .clone-process-row:hover {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .stage-num-col {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+  }
+  .stage-title-row {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .stage-title {
+    font-size: 1.15rem;
+  }
+  .stage-pill-tag {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+  .stage-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .stage-activities-row {
+    gap: 6px;
+  }
+  .stage-act-list {
+    gap: 6px;
+  }
+  .stage-act-item {
+    font-size: 9px;
+    padding: 3px 7px;
+  }
+
+  /* About Page — Value Section */
+  .clone-value-section {
+    margin-top: clamp(60px, 8vw, 90px);
+  }
+  .clone-value-header {
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+  .clone-value-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+  }
+  .value-subnote {
+    font-size: 0.92rem;
+  }
+  .clone-value-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .clone-value-card {
+    padding: 24px 20px;
+  }
+  .value-card-title {
+    font-size: 1.18rem;
+  }
+  .value-card-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* About Page — Capabilities Section */
+  .clone-capabilities-section {
+    margin-top: clamp(60px, 8vw, 90px);
+  }
+  .capabilities-editorial-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+  }
+  .capabilities-editorial-sub {
+    font-size: 0.92rem;
+  }
+  .cap-big-row {
+    padding: 18px 6px;
+  }
+  .cap-text {
+    font-size: clamp(1.25rem, 5.2vw, 1.95rem);
+    line-height: 1.18;
+    word-break: break-word;
+  }
+  .cap-hover-arrow {
+    display: none;
+  }
+
+  /* About Page — Toolkit Section */
+  .clone-toolkit-section,
+  .clone-journey-section {
+    margin-top: clamp(60px, 8vw, 90px);
+  }
+  .toolkit-editorial-title,
+  .journey-editorial-title {
+    font-size: clamp(1.7rem, 6vw, 2.2rem);
+  }
+  .clone-toolkit-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .toolkit-card-col {
+    padding: 22px 18px;
+  }
+  .toolkit-tools-list {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .toolkit-tool-item {
+    padding: 10px 14px;
+    font-size: 10.5px;
+  }
+  .skill-badge {
+    font-size: 10px;
+    padding: 6px 11px;
+  }
+
+  /* About Page — Journey Section */
+  .clone-journey-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
+  }
+  .journey-role-name {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .journey-period-tag {
+    font-size: 9.5px;
+    margin-bottom: 6px;
+  }
+  .journey-focus-title {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .journey-desc-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* About Page — Dark CTA Section */
+  .clone-dark-cta-section {
+    margin-top: clamp(60px, 8vw, 90px);
+    margin-bottom: 20px;
+  }
+  .clone-dark-cta-card {
+    padding: 38px 20px;
+    border-radius: 14px;
+  }
+  .dark-cta-title {
+    font-size: clamp(1.65rem, 6vw, 2.3rem);
+    line-height: 1.16;
+    margin-bottom: 14px;
+  }
+  .dark-cta-desc {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .dark-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .dark-cta-buttons .btn-editorial {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+  }
+
+  /* Contact Page Responsive */
+  .contact-hero-heading {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    line-height: 1.12;
+    margin-bottom: 14px;
+  }
+  .contact-hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .contact-hero-subnote {
+    font-size: 10px;
+  }
+  .contact-main-section {
+    margin-top: 32px;
+  }
+  .contact-editorial-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .contact-sidebar .contact-card-box {
+    padding: 22px 18px;
+    gap: 20px;
+  }
+  .direct-email-link {
+    font-size: 1.1rem;
+  }
+  .social-row-link {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+  .contact-form-container {
+    padding: 22px 18px;
+  }
+  .form-head-meta {
+    font-size: 9px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  .project-type-selector {
+    gap: 6px;
+  }
+  .type-pill {
+    font-size: 10.5px;
+    padding: 7px 12px;
+  }
+  .form-foot-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-top: 10px;
+    padding-top: 18px;
+  }
+  .form-direct-note {
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+  .btn-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 12.5px;
+  }
+  .contact-closing-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 18px 16px;
+    margin-top: 36px;
+  }
+
+  /* Works / Lab Page Responsive */
+  .lab-intro {
+    padding: 40px 0 50px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .lab-intro h1,
+  .lab-intro > p:last-child {
+    grid-column: 1;
+  }
+  .lab-intro h1 {
+    font-size: clamp(34px, 11vw, 56px);
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .lab-list .experiment {
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+  }
+  .lab-list .experiment-meta {
+    padding-inline: 10px;
+  }
+  .lab-wheel {
+    height: 60vh;
+    padding-inline: 12vw;
+    gap: 8vw;
+  }
+  .lab-wheel .experiment {
+    width: 76vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    width: calc(100% - 24px);
+  }
+  .header-bar {
+    padding: 10px 12px;
+  }
+  .brand-crumb {
+    display: none;
+  }
+  .clone-portrait-frame {
+    max-width: 280px;
+  }
+  .clone-portrait-captions {
+    max-width: 280px;
+  }
+  .clone-process-row {
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+  }
+  .stage-num-col {
+    font-size: 1.8rem;
+  }
+  .stage-title {
+    font-size: 1.05rem;
+  }
+  .modal {
+    padding: 14px;
+  }
+}
+
+@media (hover: none) or (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
   }
 }
 
