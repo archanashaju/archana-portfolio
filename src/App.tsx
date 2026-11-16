@@ -830,11 +830,11 @@ export default function App() {
           </div>
         </main>
       )}
-      {route === "about" && <AboutPage />}
+      {route === "about" && <AboutPage onNavigate={(r) => navigate(r as Route)} />}
       {(route === "works" || route === "lab") && (
         <WorksPage onNavigate={(r) => navigate(r as Route)} />
       )}
-      {route === "contact" && <ContactPage />}
+      {route === "contact" && <ContactPage onNavigate={(r) => navigate(r as Route)} />}
       {route === "flexshft" && (
         <FlexshftPage onBack={() => navigate("home")} onNavigate={(r) => navigate(r as Route)} />
       )}
